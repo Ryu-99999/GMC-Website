@@ -1,0 +1,2750 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>G Mining Capital</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+/* ══════════════════════════════════════
+   BRAND PALETTE (from GMC template)
+   Olive Green   #5A6B4A  primary
+   Green Dark    #3E4E34  header/footer
+   Amber         #C87941  accent
+   Beige         #EDE5D0  surface
+   Beige Light   #FAF7F0  page bg
+   Charcoal      #1E1E1E  text
+   ══════════════════════════════════════ */
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --green:      #5A6B4A;
+  --green-dark: #3E4E34;
+  --green-mid:  #4A5C3A;
+  --amber:      #C87941;
+  --amber-dark: #A35F2C;
+  --beige:      #EDE5D0;
+  --beige-lt:   #FAF7F0;
+  --beige-dk:   #D8CEBC;
+  --charcoal:   #1E1E1E;
+  --text:       #2C2C28;
+  --muted:      #6B6B60;
+  --border:     rgba(90,107,74,0.16);
+  --sc-bg:      #EFF5F5;
+  --nav-h:      80px;
+}
+
+html { scroll-behavior: smooth; font-size: 18px; }
+
+body {
+  font-family: 'Outfit', sans-serif;
+  background: var(--beige-lt);
+  color: var(--text);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,h2,h3 {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 600;
+  line-height: 1.15;
+  color: var(--charcoal);
+}
+h2 { font-size: clamp(1.8rem, 3.5vw, 2.8rem); }
+h3 { font-size: 1.2rem; }
+em { font-style: italic; color: var(--amber); font-weight: 600; }
+a  { color: inherit; text-decoration: none; }
+
+.eyebrow {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--amber);
+  margin-bottom: 0.8rem;
+}
+
+/* ── Sections ── */
+.page { display: none; min-height: 100vh; padding-top: var(--nav-h); }
+.page.active { display: block; }
+
+/* ══════════════════════════════════════
+   NAVIGATION
+   ══════════════════════════════════════ */
+#nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: var(--nav-h);
+  background: var(--green-dark);
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+  z-index: 300;
+}
+.nav-inner {
+  max-width: 1320px;
+  margin: 0 auto;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 3rem;
+}
+
+/* Logo */
+.logo { display: flex; align-items: center; cursor: pointer; }
+.logo img { height: 56px; width: auto; display: block; }
+footer .logo img { height: 44px; filter: brightness(10); }
+
+/* Nav links */
+.nav-links { display: flex; gap: 0.2rem; list-style: none; }
+.nav-links a {
+  display: block;
+  padding: 0.45rem 1rem;
+  font-size: 0.88rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(237,229,208,0.55);
+  border-radius: 2px;
+  transition: color 0.2s, background 0.2s;
+  cursor: pointer;
+}
+.nav-links a:hover { color: var(--beige); background: rgba(255,255,255,0.06); }
+.nav-links a.active { color: var(--amber); }
+
+/* Hamburger */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+}
+.hamburger span {
+  display: block;
+  width: 22px; height: 1.5px;
+  background: var(--beige);
+  border-radius: 2px;
+  transition: transform 0.25s, opacity 0.25s;
+}
+
+/* Mobile drawer */
+#mobile-drawer {
+  display: none;
+  position: fixed;
+  top: var(--nav-h); left: 0; right: 0;
+  background: var(--green-dark);
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+  z-index: 299;
+  padding: 0.75rem 2rem 1.25rem;
+}
+#mobile-drawer.open { display: block; }
+#mobile-drawer a {
+  display: block;
+  padding: 0.65rem 0;
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(237,229,208,0.7);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  cursor: pointer;
+}
+#mobile-drawer a:hover { color: var(--amber); }
+
+/* ══════════════════════════════════════
+   OVERVIEW — HERO
+   ══════════════════════════════════════ */
+.hero {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: 4rem;
+  align-items: center;
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 7rem 3rem 5rem;
+}
+.hero-title {
+  font-size: clamp(3rem, 6vw, 4.8rem);
+  line-height: 1.1;
+  margin-bottom: 1.75rem;
+}
+.hero-sub {
+  font-size: 1.18rem;
+  line-height: 1.8;
+  color: var(--muted);
+  font-weight: 300;
+  max-width: 520px;
+  margin-bottom: 2.25rem;
+}
+.btn {
+  display: inline-block;
+  padding: 0.72rem 1.9rem;
+  background: var(--green);
+  color: var(--beige-lt);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  border-radius: 2px;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s;
+  font-family: 'Outfit', sans-serif;
+}
+.btn:hover { background: var(--green-dark); }
+
+/* Stats panel */
+.stats-panel {
+  background: var(--green);
+  border-radius: 4px;
+  padding: 2rem 1.75rem;
+}
+.stats-bar {
+  width: 36px; height: 3px;
+  background: var(--amber);
+  border-radius: 2px;
+  margin-bottom: 1.75rem;
+}
+.stat-item {
+  padding: 1.3rem 0;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+.stat-item:last-child { border-bottom: none; }
+.stat-num {
+  display: block;
+  font-family: 'Outfit', sans-serif;
+  font-size: 2.4rem;
+  font-weight: 600;
+  color: var(--beige-lt);
+  line-height: 1;
+  margin-bottom: 0.3rem;
+}
+.stat-label {
+  display: block;
+  font-size: 0.76rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(250,247,240,0.5);
+}
+
+/* Mission section */
+.mission-section {
+  background-image: url("img_eff76f8d.jpg");
+  background-size: cover;
+  background-position: center 40%;
+  padding: 5rem 3rem;
+  position: relative;
+  border-top: none;
+  border-bottom: none;
+}
+.mission-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(250,247,240,0.92) 0%,
+    rgba(250,247,240,0.78) 40%,
+    rgba(250,247,240,0.78) 60%,
+    rgba(250,247,240,0.92) 100%
+  );
+  pointer-events: none;
+  z-index: 0;
+}
+.mission-section > * { position: relative; z-index: 1; }
+.mission-inner {
+  max-width: 1320px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 340px 1fr;
+  gap: 5rem;
+  align-items: start;
+}
+.mission-left { position: sticky; top: 6rem; }
+.mission-text {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 800;
+  font-size: clamp(2.8rem, 4vw, 4rem);
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+  color: var(--charcoal);
+  margin-top: 0.75rem;
+}
+.mission-accent { color: var(--amber); }
+.mission-lead {
+  font-size: 1.18rem;
+  line-height: 1.8;
+  color: var(--charcoal);
+  font-weight: 300;
+  margin-bottom: 2.5rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid rgba(62,78,52,0.25);
+}
+.mission-pillars { display: flex; flex-direction: column; gap: 0.75rem; }
+.mp {
+  display: grid;
+  grid-template-columns: 56px 1fr;
+  gap: 1.5rem;
+  padding: 1.5rem 1.75rem;
+  background: rgba(255,255,255,0.72);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255,255,255,0.6);
+  border-radius: 6px;
+  align-items: start;
+}
+.mp-num {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--amber);
+  letter-spacing: 0.04em;
+  line-height: 1;
+  padding-top: 0;
+  min-width: 48px;
+}
+.mp-text {
+  font-size: 1.08rem;
+  line-height: 1.7;
+  color: var(--charcoal);
+  font-weight: 300;
+}
+.mp-text strong { color: var(--charcoal); font-weight: 700; display: block; margin-bottom: 0.35rem; font-size: 1.15rem; line-height: 1.2; }
+
+/* Pillars */
+.pillars-wrap-outer {
+  background-image: url("img_eff76f8d.jpg");
+  background-size: cover;
+  background-position: center 40%;
+  position: relative;
+}
+.pillars-wrap-outer::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(250,247,240,0.82);
+  pointer-events: none;
+  z-index: 0;
+}
+.pillars-wrap {
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 5rem 3rem;
+  position: relative;
+  z-index: 1;
+}
+.pillars-wrap h2 { font-size: 1.85rem; margin-bottom: 0.75rem; }
+.rule { width: 2.5rem; height: 2px; background: var(--amber); border-radius: 1px; margin-bottom: 2.75rem; }
+.pillars-grid {
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  overflow: hidden;
+}
+.pillar {
+  background: var(--beige-lt);
+  padding: 2rem 1.6rem;
+  transition: background 0.2s;
+}
+.pillar:hover { background: var(--beige); }
+.pillar-icon { color: var(--green); font-size: 1rem; margin-bottom: 0.9rem; }
+.pillar h3 {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.2rem;
+  margin-bottom: 0.65rem;
+  color: var(--charcoal);
+  font-weight: 700;
+}
+.pillar p { font-size: 1.05rem; line-height: 1.75; color: var(--muted); font-weight: 300; }
+
+/* Commodities */
+.commodities {
+  background-image: url("img_1fa23ba6.jpg");
+  background-size: cover;
+  background-position: center center;
+  padding: 5rem 3rem;
+  position: relative;
+  border-top: none;
+  border-bottom: none;
+}
+.commodities::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    var(--beige-lt) 0%,
+    rgba(250,247,240,0.15) 22%,
+    rgba(20,15,10,0.55) 50%,
+    rgba(250,247,240,0.15) 78%,
+    var(--beige-lt) 100%
+  );
+  pointer-events: none;
+  z-index: 0;
+}
+.commodities > * { position: relative; z-index: 1; }
+.commodities .commodities-inner h2 { color: var(--beige-lt); }
+.commodities .commodities-inner p  { color: rgba(250,247,240,0.80); }
+.commodities .eyebrow              { color: var(--amber); }
+.commodities-inner {
+  max-width: 1320px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5rem;
+  align-items: center;
+}
+.commodities-inner h2 { font-size: 1.9rem; color: var(--charcoal); margin: 0.65rem 0 1.1rem; }
+.commodities-inner p { font-size: 1.1rem; line-height: 1.8; color: var(--muted); font-weight: 300; }
+.tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.tag {
+  padding: 0.35rem 0.9rem;
+  border: 1px solid var(--beige-dk);
+  border-radius: 2px;
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  transition: all 0.2s;
+}
+.tag:hover { border-color: var(--amber); color: var(--amber); }
+.tag-primary {
+  background: var(--amber);
+  border-color: var(--amber);
+  color: #fff;
+  font-weight: 700;
+}
+.tag-primary:hover { background: var(--amber-dark); border-color: var(--amber-dark); color: #fff; }
+.tag-geo {
+  border-color: var(--beige-dk);
+  color: #aaa9a0;
+  font-style: italic;
+}
+.tag-geo:hover { border-color: var(--muted); color: var(--muted); }
+
+/* ══════════════════════════════════════
+   INNER PAGE HEADER
+   ══════════════════════════════════════ */
+.page-head {
+  background: var(--green-dark);
+  padding: 4rem 0 3rem;
+}
+.page-head-inner { max-width: 1320px; margin: 0 auto; padding: 0 3rem; }
+.page-head h2 { font-size: clamp(1.9rem,4vw,2.9rem); color: var(--beige-lt); margin-bottom: 0.85rem; }
+.page-head p { font-size: 1.12rem; color: rgba(250,247,240,0.58); font-weight: 300; max-width: 520px; line-height: 1.75; }
+
+/* ══════════════════════════════════════
+   TEAM
+   ══════════════════════════════════════ */
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 1px;
+  background: var(--border);
+  border-top: 1px solid var(--border);
+  max-width: 1320px;
+  margin: 0 auto;
+  width: 100%;
+}
+.member {
+  background: var(--beige-lt);
+  padding: 2.4rem 2.2rem;
+  transition: background 0.2s;
+}
+.member:hover { background: var(--beige); }
+.member-top {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  margin-bottom: 1.1rem;
+}
+.avatar {
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  background: var(--green);
+  color: var(--beige-lt);
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.88rem;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.member-name {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.25rem;
+  color: var(--charcoal);
+  margin-bottom: 0.18rem;
+}
+.member-title {
+  font-size: 0.76rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--amber);
+}
+.member-bio { font-size: 1.05rem; line-height: 1.75; color: var(--muted); font-weight: 300; }
+
+/* ══════════════════════════════════════
+   MEDIA
+   ══════════════════════════════════════ */
+.press-list {
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 3.5rem 3rem;
+}
+.press-empty {
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 3rem 0;
+  text-align: center;
+}
+.press-empty-text {
+  font-size: 1rem;
+  color: var(--muted);
+  font-weight: 300;
+  font-style: italic;
+  margin: 0 0 2rem;
+}
+.subscribe-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.85rem;
+}
+.subscribe-label {
+  font-size: 0.82rem;
+  color: var(--muted);
+  font-weight: 300;
+  letter-spacing: 0.04em;
+  margin: 0;
+}
+.subscribe-form {
+  display: flex;
+  gap: 0.65rem;
+  align-items: center;
+}
+.subscribe-input {
+  width: 260px;
+}
+.subscribe-ok {
+  display: none;
+  font-size: 0.85rem;
+  color: var(--green);
+  font-weight: 500;
+}
+.press-item {
+  display: grid;
+  grid-template-columns: 170px 1fr;
+  gap: 3rem;
+  padding: 2.25rem 0;
+  border-bottom: 1px solid var(--border);
+}
+.press-item:first-child { border-top: 1px solid var(--border); }
+.press-meta { display: flex; flex-direction: column; gap: 0.45rem; padding-top: 0.2rem; }
+.press-tag {
+  display: inline-block;
+  padding: 0.22rem 0.6rem;
+  background: var(--green);
+  color: var(--beige-lt);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  border-radius: 2px;
+  width: fit-content;
+}
+.press-date { font-size: 0.85rem; color: var(--muted); font-weight: 300; }
+.press-title {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.4rem;
+  line-height: 1.35;
+  margin-bottom: 0.65rem;
+  color: var(--charcoal);
+}
+.press-body { font-size: 1.06rem; line-height: 1.75; color: var(--muted); font-weight: 300; margin-bottom: 0.9rem; }
+.press-dl {
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--amber);
+  transition: color 0.2s;
+}
+.press-dl:hover { color: var(--amber-dark); }
+
+/* ══════════════════════════════════════
+   CONTACT
+   ══════════════════════════════════════ */
+.contact-wrap {
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 4rem 3rem;
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: 8rem;
+  align-items: start;
+}
+.contact-info { display: flex; flex-direction: column; gap: 1.75rem; }
+.ci-label {
+  font-size: 0.74rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--amber);
+  margin-bottom: 0.35rem;
+}
+.ci-value { font-size: 1.08rem; line-height: 1.75; color: var(--text); font-weight: 300; }
+.ci-value a { color: var(--green); }
+.ci-value a:hover { color: var(--amber); }
+
+/* Form */
+.c-form { display: flex; flex-direction: column; gap: 1.15rem; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.15rem; }
+.fg { display: flex; flex-direction: column; gap: 0.38rem; }
+.fl {
+  font-size: 0.74rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.fi, .ft {
+  background: var(--beige-lt);
+  border: 1px solid var(--beige-dk);
+  border-radius: 2px;
+  padding: 0.68rem 0.9rem;
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.05rem;
+  color: var(--text);
+  width: 100%;
+  transition: border-color 0.2s;
+}
+.fi::placeholder, .ft::placeholder { color: var(--muted); opacity: 0.55; }
+.fi:focus, .ft:focus { outline: none; border-color: var(--green); }
+.ft { resize: vertical; min-height: 135px; }
+select.fi { cursor: pointer; appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236B6B60' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 1rem center; padding-right: 2.5rem; }
+.form-foot { display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap; }
+.form-note { font-size: 0.73rem; color: var(--muted); font-weight: 300; }
+.form-ok {
+  display: none;
+  padding: 0.8rem 1.1rem;
+  background: rgba(90,107,74,0.09);
+  border: 1px solid var(--green);
+  border-radius: 2px;
+  color: var(--green);
+  font-size: 0.83rem;
+  font-weight: 500;
+}
+
+/* ══════════════════════════════════════
+   FOOTER
+   ══════════════════════════════════════ */
+footer {
+  background: var(--charcoal);
+  border-top: 3px solid var(--green);
+  padding: 2.25rem 3rem;
+}
+.footer-inner {
+  max-width: 1320px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+.footer-nav { display: flex; gap: 1.75rem; }
+.footer-nav a {
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(237,229,208,0.38);
+  cursor: pointer;
+  transition: color 0.2s;
+}
+.footer-nav a:hover { color: var(--amber); }
+.footer-copy { font-size: 0.9rem; color: rgba(237,229,208,0.28); font-weight: 300; line-height: 1.6; text-align: right; }
+
+/* ══════════════════════════════════════
+   SUMITOMO JV BANNER
+   ══════════════════════════════════════ */
+.jv-banner {
+  background: var(--beige-lt);
+  border-top: 1px solid var(--beige-dk);
+  border-bottom: 1px solid var(--beige-dk);
+  padding: 4rem 3rem;
+}
+.jv-inner {
+  max-width: 1320px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 4rem;
+  align-items: center;
+}
+.jv-logo {
+  text-align: center;
+  padding: 1.75rem 2rem;
+  background: #fff;
+  border: 1px solid var(--beige-dk);
+  border-radius: 4px;
+  min-width: 200px;
+}
+.jv-logo-mark {
+  font-size: 1.4rem;
+  color: var(--green-dark);
+  font-weight: 300;
+  letter-spacing: 0.1em;
+  margin-bottom: 0.5rem;
+}
+.jv-logo-sub {
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* Board of Directors */
+.board-section {
+  background: #fff;
+  padding: 4rem 3rem;
+  width: 100%;
+  border-top: 1px solid var(--beige-dk);
+  border-bottom: 1px solid var(--beige-dk);
+}
+.board-inner {
+  max-width: 1320px;
+  margin: 0 auto;
+}
+.board-header {
+  margin-bottom: 2.5rem;
+}
+.board-header h2 {
+  color: var(--charcoal);
+  font-size: 1.6rem;
+}
+.board-header .eyebrow { color: var(--amber); }
+.board-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--beige-dk);
+  border: 1px solid var(--beige-dk);
+  border-radius: 3px;
+  overflow: hidden;
+}
+.board-member {
+  background: var(--beige-lt);
+  padding: 1.5rem 1.75rem;
+  transition: background 0.2s;
+}
+.board-member:hover { background: var(--beige); }
+.board-name {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--charcoal);
+  margin-bottom: 0.35rem;
+}
+.board-org {
+  font-size: 0.8rem;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+  text-transform: uppercase;
+}
+
+
+/* ══════════════════════════════════════
+   GMS PARTNERSHIP SECTION
+   ══════════════════════════════════════ */
+.gms-section {
+  background: var(--beige-lt);
+  padding: 5rem 3rem;
+  border-top: 1px solid var(--beige-dk);
+  border-bottom: 1px solid var(--beige-dk);
+}
+.gms-inner {
+  max-width: 1320px;
+  margin: 0 auto;
+}
+.gms-header {
+  max-width: 780px;
+  margin-bottom: 3.5rem;
+}
+.gms-header h2 {
+  font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+  color: var(--charcoal);
+  margin: 0.75rem 0 1.25rem;
+  line-height: 1.2;
+}
+.gms-lead {
+  font-size: 1.1rem;
+  line-height: 1.85;
+  color: var(--muted);
+  font-weight: 300;
+}
+.gms-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--beige-dk);
+  border: 1px solid var(--beige-dk);
+  border-radius: 3px;
+  overflow: hidden;
+  margin-bottom: 2.5rem;
+}
+.gms-card {
+  background: #fff;
+  padding: 2rem 1.75rem;
+  transition: background 0.2s;
+}
+.gms-card:hover { background: var(--beige); }
+.gms-icon {
+  color: var(--amber);
+  font-size: 1rem;
+  margin-bottom: 0.85rem;
+}
+.gms-card h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--charcoal);
+  margin-bottom: 0.65rem;
+  line-height: 1.3;
+}
+.gms-card p {
+  font-size: 0.98rem;
+  line-height: 1.75;
+  color: var(--muted);
+  font-weight: 300;
+}
+.gms-footer-link {
+  display: flex;
+  justify-content: flex-start;
+}
+
+
+/* GMS section blocks */
+.gms-block {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 3rem;
+  padding: 2.5rem 0;
+  border-bottom: 1px solid var(--beige-dk);
+  align-items: start;
+}
+.gms-block-header { padding-top: 0.25rem; }
+/* Partner cards */
+.gms-partner-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-bottom: 3.5rem;
+}
+.gms-partner-card {
+  background: #fff;
+  border: 1px solid var(--beige-dk);
+  border-radius: 4px;
+  padding: 2rem 1.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  transition: box-shadow 0.2s;
+}
+.gms-partner-card:hover { box-shadow: 0 4px 16px rgba(90,107,74,0.10); }
+.gms-partner-card--center {
+  background: var(--beige-lt);
+  border-color: var(--beige-dk);
+}
+.gms-partner-label {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--charcoal);
+  letter-spacing: 0.02em;
+}
+.gms-partner-tag {
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 0.25rem;
+}
+.gms-partner-card p {
+  font-size: 0.87rem;
+  line-height: 1.75;
+  color: var(--muted);
+  font-weight: 300;
+  flex: 1;
+}
+.gms-partner-highlight {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--green);
+  border-left: 2px solid var(--beige-dk);
+  padding-left: 0.75rem;
+  margin-top: 0.5rem;
+  letter-spacing: 0.02em;
+}
+
+
+/* ══════════════════════════════════════
+   ABOUT PAGE
+   ══════════════════════════════════════ */
+
+/* Hero */
+.ab-hero {
+  background: var(--green-dark);
+  padding: 6rem 3rem 5rem;
+}
+.ab-hero-inner { max-width: 1320px; margin: 0 auto; }
+.ab-hero-h {
+  font-size: clamp(3rem, 6vw, 4.8rem);
+  font-weight: 700;
+  color: var(--beige-lt);
+  line-height: 1.1;
+  margin: 0.75rem 0 1.5rem;
+}
+.ab-hero-h em { font-style: italic; color: var(--amber); }
+.ab-hero-p {
+  font-size: 1.18rem;
+  line-height: 1.85;
+  color: rgba(250,247,240,0.6);
+  font-weight: 300;
+  max-width: 700px;
+}
+
+/* JV Visual */
+.ab-jv {
+  background-image: url("img_eff76f8d.jpg");
+  background-size: cover;
+  background-position: center 40%;
+  padding: 4.5rem 3rem;
+  border-top: 1px solid rgba(255,255,255,0.06);
+  position: relative;
+}
+.ab-jv::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(250,247,240,0.92) 0%,
+    rgba(250,247,240,0.78) 40%,
+    rgba(250,247,240,0.78) 60%,
+    rgba(250,247,240,0.92) 100%
+  );
+  pointer-events: none;
+  z-index: 0;
+}
+.ab-jv > * { position: relative; z-index: 1; }
+.ab-jv-inner { max-width: 1320px; margin: 0 auto; }
+.ab-jv-top { margin-bottom: 3rem; }
+.ab-jv-grid {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 2rem;
+  align-items: center;
+}
+.ab-jv-card {
+  background: rgba(255,255,255,0.75);
+  border: 1px solid rgba(0,0,0,0.08);
+  border-radius: 6px;
+  padding: 2.5rem 2rem;
+}
+.ab-jv-pct {
+  font-family: 'Outfit', sans-serif;
+  font-size: 4.5rem;
+  font-weight: 800;
+  color: var(--amber);
+  line-height: 1;
+  margin-bottom: 0.5rem;
+}
+.ab-jv-co {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--charcoal);
+  margin-bottom: 0.2rem;
+}
+.ab-jv-sub {
+  font-size: 0.65rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 1rem;
+}
+.ab-jv-desc {
+  font-size: 1.0rem;
+  line-height: 1.7;
+  color: var(--charcoal);
+  font-weight: 300;
+}
+.ab-jv-divider {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+.ab-jv-gmc {
+  text-align: center;
+  background: transparent;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+.ab-jv-gmc-icon {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: #fff;
+  line-height: 1;
+}
+.ab-jv-gmc-name {
+  font-size: 0.5rem;
+  font-weight: 700;
+  color: var(--charcoal);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-align: center;
+  line-height: 1.3;
+}
+.ab-jv-gmc-tag { display: none; }
+.ab-jv-mgmt {
+  font-size: 0.62rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  border: 1px solid rgba(0,0,0,0.15);
+  padding: 0.25rem 0.75rem;
+  border-radius: 2px;
+  white-space: nowrap;
+}
+
+/* Content sections */
+.ab-section { padding: 6rem 3rem; }
+.ab-section--light { background: var(--beige-lt); }
+.ab-section--charcoal {
+  background-image: url("img_02e56ab9.jpg");
+  background-size: cover;
+  background-position: center 35%;
+  position: relative;
+  border-top: none !important;
+  border-bottom: none !important;
+}
+.ab-section--charcoal::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(239,245,245,0.82);
+  pointer-events: none;
+  z-index: 0;
+}
+.ab-section--charcoal > * {
+  position: relative;
+  z-index: 1;
+}
+/* Sumitomo section — darken text & dividers for photo bg readability */
+.ab-section--charcoal .ab-section-body p { color: var(--charcoal); font-weight: 400; }
+.ab-section--charcoal .ab-section-sub    { color: var(--charcoal); }
+.ab-section--charcoal .ab-sc-pillars     { border-color: rgba(30,30,20,0.25); }
+.ab-section--charcoal .ab-sc-pillar      { border-bottom-color: rgba(30,30,20,0.20); }
+.ab-section--charcoal .ab-sc-pillar-text { color: var(--charcoal); font-weight: 400; }
+.ab-section--charcoal .ab-sc-pillar:hover { background: rgba(239,245,245,0.6); }
+.ab-section--dark  { background: var(--green-dark); }
+.ab-section-inner {
+  max-width: 1320px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 7rem;
+  align-items: start;
+}
+.ab-section-head h2 {
+  font-size: clamp(2.2rem, 4vw, 3.2rem);
+  font-weight: 700;
+  color: var(--charcoal);
+  margin: 0.5rem 0 0.4rem;
+  line-height: 1.15;
+}
+.ab-section--dark .ab-section-head h2 { color: var(--beige-lt); }
+.ab-section-sub {
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 1rem;
+}
+.ab-rule {
+  width: 3rem;
+  height: 3px;
+  background: var(--green);
+  border-radius: 2px;
+  margin: 1.25rem 0;
+}
+.ab-link {
+  display: inline-block;
+  margin-top: 1.5rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--green);
+  text-decoration: none;
+  border: 1px solid rgba(90,107,74,0.3);
+  padding: 0.45rem 1rem;
+  border-radius: 2px;
+  transition: all 0.2s;
+}
+.ab-link:hover { background: rgba(90,107,74,0.08); }
+.ab-section-body p {
+  font-size: 1.08rem;
+  line-height: 1.9;
+  color: var(--muted);
+  font-weight: 300;
+  margin-bottom: 1.5rem;
+}
+.ab-section--dark .ab-section-body p { color: rgba(250,247,240,0.62); }
+
+/* GMS Values */
+
+/* REFIT Values */
+.ab-refit {
+  margin: 2.5rem 0 1.5rem;
+}
+.ab-refit-label {
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 1.25rem;
+}
+.ab-refit-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0.75rem;
+}
+.ab-refit-item {
+  background: var(--clr);
+  border-radius: 4px;
+  padding: 1.5rem 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+  transition: transform 0.2s, box-shadow 0.2s;
+  cursor: default;
+}
+.ab-refit-item:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+}
+.ab-refit-letter {
+  font-family: 'Outfit', sans-serif;
+  font-size: 2.4rem;
+  font-weight: 800;
+  color: rgba(255,255,255,0.95);
+  line-height: 1;
+}
+.ab-refit-word {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.75);
+}
+@media (max-width: 768px) {
+  .ab-refit-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+.ab-list {
+  margin: 1.25rem 0 1.5rem;
+  padding-left: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+.ab-list li {
+  font-size: 1.0rem;
+  line-height: 1.8;
+  color: var(--muted);
+  font-weight: 300;
+  padding-left: 1.25rem;
+  border-left: 2px solid var(--amber);
+}
+.ab-list li strong { color: var(--charcoal); font-weight: 600; }
+
+
+
+/* GMS Capabilities */
+.ab-caps {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0;
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 4px;
+  overflow: hidden;
+  background: rgba(255,255,255,0.04);
+}
+.ab-cap {
+  padding: 1.75rem 1.5rem;
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+  border-right: 1px solid rgba(255,255,255,0.07);
+  transition: background 0.2s;
+}
+.ab-cap:hover { background: rgba(255,255,255,0.06); }
+.ab-cap-num {
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: var(--amber);
+  letter-spacing: 0.1em;
+  margin-bottom: 0.5rem;
+}
+.ab-cap-title {
+  font-size: 1.0rem;
+  font-weight: 600;
+  color: var(--beige-lt);
+  margin-bottom: 0.5rem;
+  line-height: 1.3;
+}
+.ab-cap-text {
+  font-size: 0.92rem;
+  line-height: 1.7;
+  color: rgba(250,247,240,0.5);
+  font-weight: 300;
+}
+
+
+/* Sumitomo hero banner — retired */
+.ab-sc-hero {
+  background: var(--charcoal);
+  padding: 5rem 3rem;
+  border-top: 3px solid var(--amber);
+}
+.ab-sc-hero-inner {
+  max-width: 1320px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6rem;
+  align-items: center;
+}
+.ab-sc-tagline {
+  font-size: 1.6rem;
+  font-weight: 300;
+  color: var(--beige-lt);
+  font-style: italic;
+  letter-spacing: 0.02em;
+  margin-bottom: 0.75rem;
+  line-height: 1.4;
+}
+.ab-sc-est {
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(250,247,240,0.4);
+}
+.ab-sc-spirit {
+  border-left: 3px solid var(--amber);
+  padding-left: 2.5rem;
+  background: rgba(255,255,255,0.5);
+  padding: 1.75rem 2rem 1.75rem 2.5rem;
+  border-radius: 3px;
+  margin-bottom: 2.5rem;
+}
+.ab-sc-spirit-label {
+  font-size: 0.68rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--amber);
+  margin-bottom: 1.25rem;
+  font-weight: 600;
+}
+.ab-sc-quote {
+  font-size: 1.2rem;
+  font-weight: 300;
+  color: var(--beige-lt);
+  font-style: italic;
+  line-height: 1.6;
+  margin: 0 0 1.25rem 0;
+}
+.ab-sc-quote-sub {
+  font-size: 0.9rem;
+  line-height: 1.8;
+  color: rgba(250,247,240,0.5);
+  font-weight: 300;
+}
+
+/* SC stats */
+.ab-sc-stats {
+  display: flex;
+  gap: 1.5rem;
+  margin: 1.5rem 0;
+  flex-wrap: wrap;
+}
+.ab-sc-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+.ab-sc-stat-num {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--green);
+  line-height: 1;
+}
+.ab-sc-stat-lbl {
+  font-size: 0.62rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+@media (max-width: 768px) {
+  .ab-sc-hero { padding: 3.5rem 2rem; }
+  .ab-sc-hero-inner { grid-template-columns: 1fr; gap: 3rem; }
+  .ab-sc-spirit { padding-left: 1.5rem; }
+}
+/* Sumitomo logo */
+.ab-sc-logo-wrap {
+  margin: 1.5rem 0 0.5rem;
+  padding: 0;
+  border-top: none;
+  border-bottom: none;
+}
+.ab-sc-logo-wrap img {
+  max-width: 100% !important;
+  width: 100%;
+  background: none;
+  border-radius: 0;
+  padding: 1rem 0;
+  box-sizing: border-box;
+}
+
+/* Sumitomo pillars */
+.ab-sc-pillars {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin-top: 2rem;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  overflow: hidden;
+}
+.ab-sc-pillar {
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  display: grid;
+  grid-template-columns: 160px 1fr;
+  gap: 1.5rem;
+  align-items: center;
+  transition: background 0.2s;
+}
+.ab-sc-pillar:last-child { border-bottom: none; }
+.ab-sc-pillar:hover { background: var(--beige); }
+.ab-sc-pillar-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--charcoal);
+}
+.ab-sc-pillar-text {
+  font-size: 1.0rem;
+  color: var(--muted);
+  font-weight: 300;
+  line-height: 1.65;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .ab-jv-grid { grid-template-columns: 1fr; }
+  .ab-jv-divider { flex-direction: row; justify-content: center; }
+  .ab-section-inner { grid-template-columns: 1fr; gap: 3rem; }
+  .ab-caps { grid-template-columns: 1fr; }
+}
+@media (max-width: 768px) {
+  .ab-hero, .ab-jv, .ab-section { padding: 3.5rem 2rem; }
+  .ab-sc-pillar { grid-template-columns: 1fr; gap: 0.5rem; }
+}
+
+/* ══════════════════════════════════════
+   RESPONSIVE
+   ══════════════════════════════════════ */
+@media (max-width: 1024px) {
+  .pillars-grid { grid-template-columns: repeat(2,1fr); }
+  .team-grid { grid-template-columns: repeat(2,1fr); }
+  .hero { grid-template-columns: 1fr; gap: 2.5rem; }
+  .stats-panel { display: grid; grid-template-columns: repeat(3,1fr); gap: 0; }
+  .stats-bar { display: none; }
+  .stat-item { border-bottom: none; border-right: 1px solid rgba(255,255,255,0.1); padding: 1.25rem; }
+  .stat-item:last-child { border-right: none; }
+  .commodities-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+}
+@media (max-width: 768px) {
+  .nav-inner { padding: 0 2rem; }
+  nav { display: none; }
+  .hamburger { display: flex; }
+  .hero { padding: 4rem 2rem 3rem; }
+  .pillars-wrap { padding: 3rem 2rem; }
+  .pillars-grid { grid-template-columns: 1fr; }
+  .mission-section { padding: 3.5rem 2rem; }
+  .mission-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+  .mission-left { position: static; }
+  .gms-section { padding: 3.5rem 2rem; }
+  .gms-partner-grid { grid-template-columns: 1fr; }
+  .gms-block { grid-template-columns: 1fr; gap: 1rem; }
+  .gms-grid { grid-template-columns: 1fr; }
+  .commodities { padding: 3.5rem 2rem; }
+  .jv-banner { padding: 3rem 2rem; }
+  .jv-inner { grid-template-columns: 1fr; gap: 2rem; }
+  .jv-logo { min-width: unset; }
+  .team-grid { grid-template-columns: 1fr; }
+  .board-grid { grid-template-columns: repeat(2,1fr); }
+  .press-list { padding: 2.5rem 2rem; }
+  .press-item { grid-template-columns: 1fr; gap: 0.75rem; }
+  .contact-wrap { grid-template-columns: 1fr; gap: 2.5rem; padding: 2.5rem 2rem; }
+  .form-row { grid-template-columns: 1fr; }
+  .page-head { padding: 3rem 2rem 2.5rem; }
+  .footer-inner { flex-direction: column; align-items: flex-start; gap: 1rem; }
+  .footer-copy { text-align: left; }
+}
+
+/* ══════════════════════════════════════
+   COOKIE BANNER
+   ══════════════════════════════════════ */
+#cookie-banner {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  left: auto;
+  transform: translateY(0);
+  z-index: 500;
+  background: var(--green-dark, #2A3520);
+  border: 1px solid rgba(200,121,65,0.35);
+  border-radius: 4px;
+  padding: 1.25rem 1.25rem 1.1rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  box-shadow: 0 6px 28px rgba(0,0,0,0.32);
+  width: 260px;
+  transition: transform 0.4s ease, opacity 0.4s ease;
+  opacity: 1;
+}
+#cookie-banner.hidden {
+  transform: translateY(120%);
+  opacity: 0;
+  pointer-events: none;
+}
+.cookie-banner-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 0.5rem;
+}
+.cookie-title {
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--beige-lt);
+}
+.cookie-close {
+  background: none;
+  border: none;
+  color: rgba(250,247,240,0.45);
+  cursor: pointer;
+  font-size: 1rem;
+  line-height: 1;
+  padding: 0;
+  transition: color 0.2s;
+  flex-shrink: 0;
+}
+.cookie-close:hover { color: var(--beige-lt); }
+.cookie-text {
+  font-size: 0.76rem;
+  line-height: 1.6;
+  color: rgba(250,247,240,0.62);
+  font-weight: 300;
+  margin: 0;
+}
+.cookie-text a {
+  color: var(--amber);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.cookie-text a:hover { color: var(--beige-lt); }
+.cookie-accept {
+  background: var(--amber);
+  color: #fff;
+  border: none;
+  padding: 0.5rem 0;
+  width: 100%;
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  border-radius: 2px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.cookie-accept:hover { background: var(--amber-dark, #b56a2e); }
+@media (max-width: 768px) {
+  #cookie-banner { right: 1rem; bottom: 1rem; width: calc(100% - 2rem); }
+}
+
+/* Team member photos */
+.member-photo {
+  width: 80px;
+  height: 106px;
+  border-radius: 4px;
+  object-fit: cover;
+  object-position: center center;
+  flex-shrink: 0;
+  border: 1px solid var(--beige-dk);
+}
+.avatar { display: none; }
+
+/* ══════════════════════════════════════
+   HOME PAGE CARDS & CONTACT BANNER
+   ══════════════════════════════════════ */
+.home-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  background: var(--beige-lt);
+  padding: 5rem 5vw;
+}
+.home-card {
+  background: #fff;
+  padding: 2.5rem 2.25rem;
+  border: 1px solid rgba(90,107,74,0.14);
+  cursor: pointer;
+  transition: background 0.25s, border-color 0.25s, transform 0.2s, box-shadow 0.25s;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+}
+.home-card:hover {
+  background: var(--green-dark, #3E4E34);
+  border-color: var(--green-dark, #3E4E34);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+}
+.home-card:hover .home-card-title { color: var(--beige-lt); }
+.home-card:hover .home-card-text  { color: rgba(250,247,240,0.7); }
+.home-card:hover .home-card-link  { color: var(--amber); }
+.home-card-title {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.45rem;
+  font-weight: 600;
+  color: var(--charcoal);
+  margin: 0 0 1rem 0;
+  letter-spacing: -0.01em;
+  transition: color 0.25s;
+}
+.home-card-text {
+  font-size: 0.96rem;
+  color: var(--muted);
+  line-height: 1.75;
+  font-weight: 300;
+  margin: 0 0 1.5rem 0;
+  transition: color 0.25s;
+}
+.home-card-link {
+  display: inline-block;
+  font-size: 0.73rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--green);
+  text-decoration: none;
+  transition: color 0.25s;
+}
+@media (max-width: 1024px) {
+  .home-cards { grid-template-columns: 1fr; padding: 3rem 5vw; }
+}
+
+.home-contact-banner {
+  background: linear-gradient(rgba(20,25,16,0.62), rgba(20,25,16,0.62)),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1' height='1'%3E%3C/svg%3E");
+  background-color: #2A3020;
+  background-size: cover;
+  background-position: center;
+  padding: 6rem 3rem;
+  text-align: center;
+}
+.home-contact-inner {
+  max-width: 600px;
+  margin: 0 auto;
+}
+.home-contact-banner h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 4vw, 3rem);
+  color: var(--beige-lt);
+  font-weight: 700;
+  margin: 0 0 2rem 0;
+  line-height: 1.25;
+}
+.home-contact-btn {
+  background: var(--beige-lt) !important;
+  color: var(--charcoal) !important;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  border: none !important;
+  padding: 0.9rem 2.5rem !important;
+}
+.home-contact-btn:hover {
+  background: var(--amber) !important;
+  color: white !important;
+}
+
+@media (max-width: 768px) {
+  .home-contact-banner { padding: 4rem 2rem; }
+}
+
+
+/* ── GMS cards & table (readability) ── */
+.gms-cards{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:1px;
+  background:rgba(90,107,74,0.14);
+  border:1px solid rgba(90,107,74,0.14);
+  border-radius:6px;
+  overflow:hidden;
+  margin-top:0.5rem;
+}
+.gms-card{
+  background:#fff;
+  padding:1.35rem 1.25rem;
+}
+.gms-card-num{
+  font-size:0.65rem;
+  font-weight:800;
+  letter-spacing:0.14em;
+  color:var(--amber);
+  margin-bottom:0.35rem;
+}
+.gms-card-title{
+  font-size:1.05rem;
+  font-weight:700;
+  color:var(--charcoal);
+  margin-bottom:0.35rem;
+}
+.gms-card-text{
+  font-size:0.95rem;
+  line-height:1.65;
+  color:var(--muted);
+  font-weight:300;
+}
+.gms-compare-wrap{margin-top:1.6rem;}
+.gms-compare-title{
+  font-size:0.72rem;
+  font-weight:800;
+  letter-spacing:0.14em;
+  text-transform:uppercase;
+  color:var(--muted);
+  margin-bottom:0.75rem;
+}
+.gms-compare{
+  width:100%;
+  border-collapse:collapse;
+  background:#fff;
+  border:1px solid rgba(90,107,74,0.14);
+  border-radius:6px;
+  overflow:hidden;
+}
+.gms-compare th,
+.gms-compare td{
+  padding:0.85rem 0.9rem;
+  border-bottom:1px solid rgba(90,107,74,0.10);
+  vertical-align:top;
+  text-align:left;
+}
+.gms-compare thead th{
+  font-size:0.72rem;
+  letter-spacing:0.10em;
+  text-transform:uppercase;
+  color:var(--charcoal);
+  background:rgba(237,229,208,0.55);
+}
+.gms-compare td{font-size:0.92rem;color:var(--muted);font-weight:300;}
+@media (max-width:768px){
+  .gms-cards{grid-template-columns:1fr;}
+  .gms-compare thead{display:none;}
+  .gms-compare, .gms-compare tbody, .gms-compare tr, .gms-compare td{display:block;width:100%;}
+  .gms-compare tr{border-bottom:1px solid rgba(90,107,74,0.14);}
+  .gms-compare td{border:none;padding:0.7rem 0.9rem;}
+  .gms-compare td:first-child{font-weight:700;color:var(--charcoal);}
+}
+
+
+/* ===== Enhanced Self-Perform Section ===== */
+.sp-cards{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:0.5rem;
+  margin-top:1rem;
+}
+.sp-card{
+  display:grid;
+  grid-template-columns:160px 1.2fr 1fr;
+  background:#fff;
+  border-radius:6px;
+  padding:1.5rem 1.75rem;
+  box-shadow:0 2px 8px rgba(0,0,0,0.06);
+  align-items:start;
+  gap:2rem;
+}
+.sp-aspect{
+  font-weight:700;
+  color:var(--charcoal);
+}
+.sp-self{
+  font-weight:600;
+  color:var(--green);
+}
+.sp-epcm{
+  color:var(--muted);
+}
+.sp-self:before{
+  content:'◆ ';
+  color:var(--amber);
+}
+@media(max-width:768px){
+  .sp-card{
+    grid-template-columns:1fr;
+    gap:0.75rem;
+  }
+}
+
+
+@keyframes minezoom {
+  from { background-size: 110%; }
+  to   { background-size: 125%; }
+}
+.mine-bg-home {
+  background-size: 110%;
+  animation: minezoom 14s ease-out forwards;
+}
+
+
+.mine-bg-wrap {
+  background-image: url("img_8b614d88.jpg");
+  background-size: cover;
+  background-position: center 30%;
+  position: relative;
+}
+.mine-bg-wrap::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(30,30,20,0.52) 0%,
+    rgba(30,30,20,0.38) 55%,
+    rgba(20,20,15,0.72) 85%,
+    rgba(15,15,10,0.90) 100%
+  );
+  pointer-events: none;
+  z-index: 0;
+}
+.mine-bg-wrap::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(255,255,255,0.72) 0%,
+    rgba(255,255,255,0.30) 18%,
+    rgba(255,255,255,0.00) 38%
+  );
+  pointer-events: none;
+  z-index: 0;
+}
+.mine-bg-wrap > * { position: relative; z-index: 1; }
+
+/* Hero text on dark photo bg */
+.mine-bg-wrap .hero-title { color: var(--beige-lt); }
+.mine-bg-wrap .hero-sub   { color: rgba(250,247,240,0.72); }
+.mine-bg-wrap .eyebrow    { color: var(--amber); }
+.mine-bg-wrap .stat-num   { color: var(--beige-lt); }
+.mine-bg-wrap .stat-label { color: rgba(250,247,240,0.55); }
+.mine-bg-wrap .stats-bar  { background: var(--amber); }
+.mine-bg-wrap .stats-panel {
+  background: rgba(15, 20, 12, 0.55);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255,255,255,0.12);
+}
+
+/* Cards sit on bottom of photo area — dark-tinted */
+.mine-bg-wrap .home-cards {
+  background: transparent;
+  position: relative;
+  z-index: 1;
+}
+.mine-bg-wrap .home-card {
+  background: rgba(15,18,12,0.72);
+  border: 1px solid rgba(255,255,255,0.12);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+.mine-bg-wrap .home-card-title { color: var(--beige-lt); }
+.mine-bg-wrap .home-card-text  { color: rgba(250,247,240,0.65); }
+.mine-bg-wrap .home-card-link  { color: var(--amber); }
+.mine-bg-wrap .home-card:hover {
+  background: rgba(90,107,74,0.55);
+  border-color: rgba(200,121,65,0.5);
+  transform: translateY(-3px);
+}
+
+/* About hero on photo */
+.mine-bg-wrap.ab-hero-wrap {
+  padding: 6rem 3rem 5rem;
+}
+.mine-bg-wrap.ab-hero-wrap::before {
+  background: linear-gradient(
+    to bottom,
+    rgba(25,30,18,0.60) 0%,
+    rgba(25,30,18,0.50) 100%
+  );
+}
+
+/* Team / Media page-head on photo */
+.mine-bg-wrap.page-head-wrap {
+  padding: 4rem 0 3rem;
+}
+.mine-bg-wrap.page-head-wrap::before {
+  background: rgba(20,25,15,0.62);
+}
+
+
+/* ═══ JV / ABOUT LOWER SECTIONS — mine2 photo bg ══════════ */
+.ab-section--light,
+.jv-banner,
+.board-section,
+.gms-section {
+  background-image: url("img_2dd3758f.jpg") !important;
+  background-size: cover;
+  background-position: center 40%;
+  background-attachment: fixed;
+  position: relative;
+  border-top: none !important;
+  border-bottom: none !important;
+}
+.ab-section--light::before,
+.jv-banner::before,
+.board-section::before,
+.gms-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(250,247,240,0.88);
+  pointer-events: none;
+  z-index: 0;
+}
+.ab-section--light > *,
+.jv-banner > *,
+.board-section > *,
+.gms-section > * {
+  position: relative;
+  z-index: 1;
+}
+
+
+/* Media page-head: mining truck photo */
+.mine-bg-wrap.page-head-media {
+  background-image: url("img_9f49d02c.jpg") !important;
+  background-position: center 55%;
+}
+.mine-bg-wrap.page-head-media::before {
+  background: linear-gradient(
+    to bottom,
+    rgba(15,10,8,0.55) 0%,
+    rgba(15,10,8,0.40) 50%,
+    rgba(15,10,8,0.65) 100%
+  ) !important;
+}
+.mine-bg-wrap.page-head-media h2,
+.mine-bg-wrap.page-head-media p { color: var(--beige-lt) !important; }
+.mine-bg-wrap.page-head-media .eyebrow { color: var(--amber) !important; }
+
+/* Contact page-head: night mining photo */
+.mine-bg-wrap.page-head-contact {
+  background-image: url("GMC_-_LinkedIn_Header.jpg") !important;
+  background-position: center center;
+  background-size: cover;
+}
+.mine-bg-wrap.page-head-contact::before {
+  background: none !important;
+}
+.mine-bg-wrap.page-head-contact h2,
+.mine-bg-wrap.page-head-contact p { color: var(--beige-lt) !important; }
+.mine-bg-wrap.page-head-contact .eyebrow { color: var(--amber) !important; }
+
+
+/* Team page-head: night mining photo */
+.mine-bg-wrap.page-head-team {
+  background-image: url("img_2dd3758f.jpg") !important;
+  background-position: center 40%;
+  background-attachment: fixed;
+}
+.mine-bg-wrap.page-head-team::before {
+  background: linear-gradient(
+    to bottom,
+    rgba(10,8,5,0.62) 0%,
+    rgba(10,8,5,0.48) 50%,
+    rgba(10,8,5,0.68) 100%
+  ) !important;
+}
+.mine-bg-wrap.page-head-team h2,
+.mine-bg-wrap.page-head-team p  { color: var(--beige-lt) !important; }
+.mine-bg-wrap.page-head-team .eyebrow { color: var(--amber) !important; }
+
+/* Team grid: same photo, fixed attachment so it flows seamlessly */
+.team-grid-wrap {
+  background-image: url("img_2dd3758f.jpg");
+  background-size: cover;
+  background-position: center 40%;
+  background-attachment: fixed;
+  position: relative;
+}
+.team-grid-wrap::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(10,8,5,0.72);
+  pointer-events: none;
+  z-index: 0;
+}
+.team-grid-wrap .team-grid {
+  position: relative;
+  z-index: 1;
+  background: transparent;
+}
+/* Empty slot shows through; member cards stay opaque beige */
+.team-grid-wrap .member {
+  background: var(--beige-lt);
+}
+.team-grid-wrap .member:hover {
+  background: var(--beige);
+}
+
+</style>
+</head>
+<body>
+
+<!-- ══════════ NAV ══════════ -->
+<header id="nav">
+  <div class="nav-inner">
+    <div class="logo" onclick="go('overview')">
+      <img src="img_f7b1e9de.png" alt="G Mining Capital" style="height:48px;width:auto;display:block;">
+    </div>
+    <nav style="margin-left:auto;">
+      <ul class="nav-links">
+        <li><a class="active" data-p="overview" onclick="go('overview')">Home</a></li>
+        <li><a data-p="about"   onclick="go('about')">About</a></li>
+        <li><a data-p="team"    onclick="go('team')">Team</a></li>
+        <li><a data-p="media"   onclick="go('media')">Media</a></li>
+        <li><a data-p="contact" onclick="go('contact')">Contact</a></li>
+      </ul>
+    </nav>
+    <a href="https://gmining.com/" target="_blank" rel="noopener" style="display:flex;align-items:center;margin-left:1.2rem;opacity:0.85;transition:opacity 0.2s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.85'">
+      <img src="G_services_Miniers.jpg" alt="G Mining Services" style="height:32px;width:auto;display:block;">
+    </a>
+    <button class="hamburger" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<div id="mobile-drawer">
+  <a onclick="go('overview')">Home</a>
+  <a onclick="go('about')">About</a>
+  <a onclick="go('team')">Team</a>
+  <a onclick="go('media')">Media</a>
+  <a onclick="go('contact')">Contact</a>
+</div>
+
+<!-- ══════════ OVERVIEW ══════════ -->
+<section id="overview" class="page active">
+
+  <!-- HERO + CARDS on mine photo -->
+  <div class="mine-bg-wrap mine-bg-home">
+  <div class="hero">
+    <div>
+      <span class="eyebrow">Specialist Mining Investment</span>
+      <h1 class="hero-title">Unlocking value<br>in <em>quality</em><br>mining assets</h1>
+      <p class="hero-sub">G Mining Capital identifies, evaluates, and pursues mining investment opportunities — combining partner capital, operational expertise, and institutional governance to advance projects responsibly from development through production.</p>
+    </div>
+    <div class="stats-panel">
+      <div class="stats-bar"></div>
+      <div class="stat-item">
+        <span class="stat-num">2023</span>
+        <span class="stat-label">Established</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num">JV</span>
+        <span class="stat-label">Sumitomo Corporation</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num">Montréal</span>
+        <span class="stat-label">Québec, Canada</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3-COLUMN CARDS -->
+  <div class="home-cards">
+    <div class="home-card" onclick="go('about')">
+      <h2 class="home-card-title">About GMC</h2>
+      <p class="home-card-text">G Mining Capital is a specialist mining investment firm — a joint venture between the Gignac family's G Mining Group and Sumitomo Corporation, combining world-class mine-building expertise with global institutional capital.</p>
+      <span class="home-card-link">Read More →</span>
+    </div>
+    <div class="home-card" onclick="go('team')">
+      <h2 class="home-card-title">Our Team</h2>
+      <p class="home-card-text">GMC has built an experienced team of mining finance, technical and operational professionals — with deep hands-on expertise across the full project lifecycle, from development through production.</p>
+      <span class="home-card-link">Read More →</span>
+    </div>
+    <div class="home-card" onclick="go('media')">
+      <h2 class="home-card-title">Media</h2>
+      <p class="home-card-text">Stay up to date with the latest news, announcements and updates from G Mining Capital and the broader G Mining Group.</p>
+      <span class="home-card-link">Read More →</span>
+    </div>
+  </div><!-- /home-cards -->
+  </div><!-- /mine-bg-wrap -->
+
+  <!-- CONTACT BANNER -->
+  <div class="home-contact-banner">
+    <div class="home-contact-inner">
+      <h2>Learn more about<br>G Mining Capital</h2>
+      <button class="btn home-contact-btn" onclick="go('contact')">Contact Us</button>
+    </div>
+  </div>
+
+
+</section>
+
+<!-- ══════════ ABOUT ══════════ -->
+<section id="about" class="page">
+
+  <!-- ① HERO ─────────────────────────── -->
+  <div class="mine-bg-wrap ab-hero-wrap">
+    <div class="ab-hero-inner" style="max-width:1320px;margin:0 auto;">
+      <span class="eyebrow">Who We Are</span>
+      <h1 class="ab-hero-h">Built at the intersection of<br><em>expertise</em> and <em>capital</em></h1>
+      <p class="ab-hero-p">G Mining Capital is a joint venture specialist investment firm — a unique combination of world-class mine-building expertise and global institutional capital, united by a shared commitment to responsible, long-term value creation in mining.</p>
+    </div>
+  </div>
+
+  <!-- ① b  WHAT WE DO ──────────────────── -->
+  <div class="mission-section">
+    <div class="mission-inner">
+      <div class="mission-left">
+        <span class="eyebrow">What We Do</span>
+        <h2 class="mission-text">Identify.<br><span class="mission-accent">Evaluate.</span><br>Invest.</h2>
+      </div>
+      <div class="mission-right">
+        <p class="mission-lead">GMC identifies, evaluates, and pursues mining investment opportunities — structuring transactions with either minority or control positions across the full project lifecycle.</p>
+        <div class="mission-pillars">
+          <div class="mp">
+            <div class="mp-num">01</div>
+            <div class="mp-text"><strong>Capital Deployment</strong><br>Minority &amp; control investments in quality mining assets from development through production.</div>
+          </div>
+          <div class="mp">
+            <div class="mp-num">02</div>
+            <div class="mp-text"><strong>Operational Expertise</strong><br>Active partnership with management — combining GMC partners' hands-on mining experience.</div>
+          </div>
+          <div class="mp">
+            <div class="mp-num">03</div>
+            <div class="mp-text"><strong>Institutional Governance</strong><br>Rigorous investment discipline and transparent reporting aligned with global best practices.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ① c  INVESTMENT APPROACH ─────────── -->
+  <div class="pillars-wrap-outer">
+  <div class="pillars-wrap">
+    <h2>Investment Approach</h2>
+    <div class="rule"></div>
+    <div class="pillars-grid">
+      <div class="pillar">
+        <div class="pillar-icon">◈</div>
+        <h3>Minority Investments</h3>
+        <p>Flexible minority stake investments structured to support mining companies through development and into production, without displacing existing ownership.</p>
+      </div>
+      <div class="pillar">
+        <div class="pillar-icon">◈</div>
+        <h3>Control Investments</h3>
+        <p>Control-position transactions where GMC's operational expertise and institutional governance can drive value creation from development through production.</p>
+      </div>
+      <div class="pillar">
+        <div class="pillar-icon">◈</div>
+        <h3>Transaction Structuring</h3>
+        <p>Bespoke transaction structures tailored to each asset's stage, jurisdiction, and capital requirements — from early-stage development to producing mines.</p>
+      </div>
+      <div class="pillar">
+        <div class="pillar-icon">◈</div>
+        <h3>Operational Expertise</h3>
+        <p>Active partnership with management teams, bringing GMC partners' hands-on mining experience to advance projects responsibly and efficiently.</p>
+      </div>
+    </div>
+  </div>
+
+  </div><!-- /pillars-wrap -->
+  </div><!-- /pillars-wrap-outer -->
+
+  <!-- ① d  COMMODITY FOCUS ─────────────── -->
+  <div class="commodities">
+    <div class="commodities-inner">
+      <div>
+        <span class="eyebrow">Focus Areas</span>
+        <h2>Copper-focused.<br>Globally sourced.</h2>
+        <p>GMC's primary commodity focus is copper — a critical material for electrification and the global energy transition. We selectively pursue gold and other base metals where opportunities align with our investment thesis and return requirements.</p>
+      </div>
+      <div class="tags">
+        <span class="tag tag-primary">◆ Copper</span>
+        <span class="tag">Gold</span>
+        <span class="tag">Base Metals</span>
+        <span class="tag">Critical Minerals</span>
+        <span class="tag tag-geo">Americas</span>
+        <span class="tag tag-geo">West Africa</span>
+        <span class="tag tag-geo">Asia-Pacific</span>
+        <span class="tag tag-geo">Europe</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ② JV VISUAL ─────────────────────── -->
+  <div class="ab-jv">
+    <div class="ab-jv-inner">
+
+      <div class="ab-jv-top">
+        <span class="eyebrow" style="color:var(--amber);">Joint Venture Structure</span>
+        <h2 style="color:var(--charcoal);font-size:clamp(1.6rem,3vw,2.2rem);margin-top:0.5rem;">Joint Venture with Sumitomo Corporation · Est. 2025</h2>
+      </div>
+
+      <div class="ab-jv-grid">
+        <div class="ab-jv-card">
+          <div class="ab-jv-pct">45%</div>
+          <div class="ab-jv-co">G Mining Group</div>
+          <div class="ab-jv-sub">Gignac Family · LOMI</div>
+          <p class="ab-jv-desc">Family-owned mining development group. Technical and operational backbone of GMC through G Mining Services.</p>
+        </div>
+
+        <div class="ab-jv-divider">
+          <div class="ab-jv-gmc">
+            <img src="GMC_-_LinkedIn_Logo.jpg" alt="G Mining Capital" style="width:160px;height:90px;display:block;margin:0 auto;border-radius:8px;object-fit:cover;">
+            <div class="ab-jv-gmc-tag" style="display:block;margin-top:0.5rem;color:var(--muted);font-size:0.82rem;letter-spacing:0.06em;">Specialist Investment Firm</div>
+          </div>
+          <div class="ab-jv-mgmt">
+            <span>+ 10% Management</span>
+          </div>
+        </div>
+
+        <div class="ab-jv-card">
+          <div class="ab-jv-pct">45%</div>
+          <div class="ab-jv-co">Sumitomo Corporation</div>
+          <div class="ab-jv-sub">住友商事 · Tokyo</div>
+          <p class="ab-jv-desc">One of Japan's leading integrated trading and investment enterprises with a global presence spanning 130+ countries.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ③ G MINING GROUP ─────────────────── -->
+  <div class="ab-section ab-section--light">
+    <div class="ab-section-inner">
+      <div class="ab-section-head">
+        <span class="eyebrow">The Group Behind GMC</span>
+        <h2>G Mining Group</h2>
+        <p class="ab-section-sub">Gignac Family · Founded 2006</p>
+        <div class="ab-rule"></div>
+      </div>
+      <div class="ab-section-body">
+        <p>The G Mining Group is a family-owned mining development group operated by the Gignac family since inception — united by a shared expertise in building and operating mines safely, on budget and on schedule.</p>
+        <ul class="ab-list">
+          <li>
+            <strong>G Mining Services ("GMS")</strong> — The technical and human capital core of the group. Founded in 2006 by Louis Gignac, a 2016 Canadian Mining Hall of Fame inductee. A multidisciplinary consultancy covering the full mining project lifecycle from greenfield to operations. <a href="https://gmining.com/" target="_blank" rel="noopener" style="color:var(--amber);text-decoration:underline;text-underline-offset:2px;">gmining.com ↗</a>
+          </li>
+          <li><strong>G Mining Ventures</strong> — Listed gold producer and project development vehicle. <a href="https://gmin.gold/" target="_blank" rel="noopener" style="color:var(--amber);text-decoration:underline;text-underline-offset:2px;">gmin.gold ↗</a></li>
+          <li><strong>Other entities</strong> — Including Vardev Development Group and Laurentian Mountain Resources, spanning gold and aggregate projects.</li>
+        </ul>
+        <p>GMC's CEO Claude Dufresne held executive positions at GMS prior to co-founding G Mining Capital, ensuring a deep, operational relationship between GMC and the broader group.</p>
+        <div class="ab-refit">
+          <div class="ab-refit-label">Our Values — R.E.F.I.T.</div>
+          <div class="ab-refit-grid">
+            <div class="ab-refit-item" style="--clr:#5A6B4A;">
+              <div class="ab-refit-letter">R</div>
+              <div class="ab-refit-word">Respect</div>
+            </div>
+            <div class="ab-refit-item" style="--clr:#C87941;">
+              <div class="ab-refit-letter">E</div>
+              <div class="ab-refit-word">Excellence</div>
+            </div>
+            <div class="ab-refit-item" style="--clr:#3E4E34;">
+              <div class="ab-refit-letter">F</div>
+              <div class="ab-refit-word">Family</div>
+            </div>
+            <div class="ab-refit-item" style="--clr:#7A7A70;">
+              <div class="ab-refit-letter">I</div>
+              <div class="ab-refit-word">Integrity</div>
+            </div>
+            <div class="ab-refit-item" style="--clr:#5A6B4A;">
+              <div class="ab-refit-letter">T</div>
+              <div class="ab-refit-word">Teamwork</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  
+
+<!-- ⑤ SUMITOMO ───────────────────────── -->
+  <div class="ab-section ab-section--charcoal">
+    <div class="ab-section-inner">
+
+      <!-- Left column -->
+      <div class="ab-section-head">
+        <span class="eyebrow">Strategic Partner</span>
+        <h2>Sumitomo<br>Corporation</h2>
+        <p class="ab-section-sub">住友商事 · Est. 1919</p>
+        <div class="ab-rule" style="background:var(--amber);"></div>
+        <div class="ab-sc-logo-wrap" style="border-color:rgba(255,255,255,0.1);">
+          <a href="https://www.sumitomocorp.com/en/global" target="_blank" rel="noopener">
+            <img src="Sumitomo_Corporation_logo.jpg" alt="Sumitomo Corporation" style="max-width:220px;width:100%;display:block;padding:0.75rem 0;">
+          </a>
+        </div>
+        <div class="ab-sc-stats">
+          <div class="ab-sc-stat">
+            <div class="ab-sc-stat-num" style="color:var(--green);">130+</div>
+            <div class="ab-sc-stat-lbl">Countries</div>
+          </div>
+          <div class="ab-sc-stat">
+            <div class="ab-sc-stat-num" style="color:var(--green);">400+</div>
+            <div class="ab-sc-stat-lbl">Years History</div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Right column -->
+      <div class="ab-section-body">
+
+        <!-- Business Spirit quote -->
+        <div class="ab-sc-spirit" style="margin-bottom:2.5rem;">
+          <div class="ab-sc-spirit-label">The Sumitomo Business Spirit</div>
+          <blockquote class="ab-sc-quote" style="color:var(--charcoal);">"We shall not pursue immoral business,<br>even if it is profitable."</blockquote>
+          <p class="ab-sc-quote-sub" style="color:var(--muted);">A founding principle of over 400 years — placing integrity and long-term thinking at the heart of every business decision.</p>
+        </div>
+
+        <p>Sumitomo Corporation is one of Japan's leading <em>sōgō shōsha</em> — integrated trading and investment enterprises with a heritage rooted in the Sumitomo Business Spirit. With offices and operations spanning more than 130 countries, Sumitomo combines physical asset ownership with marketing, supply chain and financial capabilities across a broad range of industries.</p>
+        <p>In mining, Sumitomo takes a long-term approach — acquiring minority stakes with a view to building enduring partnerships with majority operators. The partnership with GMC reflects Sumitomo's commitment to expanding its mining investment footprint through a dedicated, operationally-focused vehicle.</p>
+
+        <div class="ab-sc-pillars">
+          <div class="ab-sc-pillar">
+            <div class="ab-sc-pillar-title">Global Network</div>
+            <div class="ab-sc-pillar-text">130+ countries, with trading hubs in Tokyo, Singapore, London and New York — one of the world's most extensive integrated business networks.</div>
+          </div>
+          <div class="ab-sc-pillar">
+            <div class="ab-sc-pillar-title">Integrated Mining</div>
+            <div class="ab-sc-pillar-text">Combining physical mining asset ownership with commodity marketing, supply chain and operational capability across base and precious metals.</div>
+          </div>
+          <div class="ab-sc-pillar">
+            <div class="ab-sc-pillar-title">Long-term Partnership</div>
+            <div class="ab-sc-pillar-text">Mandated to take minority stakes and build enduring partnerships — renowned globally as long-term partners of choice for mine operators and developers.</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+ <!-- ④ GMS CAPABILITIES ───────────────── -->
+<div class="ab-section ab-section--light" id="gms">
+  <div class="ab-section-inner">
+
+    <div class="ab-section-head">
+      <span class="eyebrow">Technical Partner</span>
+      <h2>G Mining Services</h2>
+      <p class="ab-section-sub">Plan Better, Build Together · Self-Perform Mine Builder</p>
+      <div class="ab-rule"></div>
+      <a href="https://gmining.com/" target="_blank" rel="noopener" style="display:inline-block;margin-top:1rem;">
+        <img src="G_services_Miniers.jpg" alt="G Mining Services" style="width:100%;max-width:200px;height:auto;display:block;">
+      </a>
+    </div>
+
+    <div class="ab-section-body">
+
+      <!-- GMS Mission -->
+      <div class="ab-sc-spirit" style="margin-bottom:2.5rem;">
+        <div class="ab-sc-spirit-label">The GMS Mission</div>
+        <blockquote class="ab-sc-quote" style="color:var(--charcoal);">"Build and maintain long-term relationships<br>while creating value for our stakeholders."</blockquote>
+        <p class="ab-sc-quote-sub" style="color:var(--muted);">Guided by the values of Respect, Excellence, Family, Integrity and Teamwork — GMS integrates with the client's team to self-perform project development, building fit-for-purpose mines safely, on budget and on schedule.</p>
+      </div>
+
+      <div style="margin-bottom:1.25rem;">
+        <span class="eyebrow">Core Capabilities</span>
+        <h3 style="font-size:1.4rem;font-weight:700;color:var(--charcoal);margin:0.25rem 0 0;">G Mining Services Capabilities</h3>
+      </div>
+
+      <div class="gms-cards">
+        <div class="gms-card">
+          <div class="gms-card-num">01</div>
+          <div class="gms-card-title">Geology & Resources</div>
+          <div class="gms-card-text">Geological interpretation, resource modelling, reserves estimation, grade control and reconciliation.</div>
+        </div>
+        <div class="gms-card">
+          <div class="gms-card-num">02</div>
+          <div class="gms-card-title">Mine Engineering</div>
+          <div class="gms-card-text">Open pit & underground design, equipment selection, production optimisation and life-of-mine planning.</div>
+        </div>
+        <div class="gms-card">
+          <div class="gms-card-num">03</div>
+          <div class="gms-card-title">Metallurgy & Processing</div>
+          <div class="gms-card-text">Mineral processing design studies, metallurgical testwork supervision, equipment selection and process optimisation.</div>
+        </div>
+        <div class="gms-card">
+          <div class="gms-card-num">04</div>
+          <div class="gms-card-title">Detailed Engineering</div>
+          <div class="gms-card-text">Civil, mechanical, electrical and automation engineering integrated with execution requirements.</div>
+        </div>
+        <div class="gms-card">
+          <div class="gms-card-num">05</div>
+          <div class="gms-card-title">Construction Management</div>
+          <div class="gms-card-text">Planning & execution, project controls, QA/QC, safety, commissioning and ramp-up support.</div>
+        </div>
+        <div class="gms-card">
+          <div class="gms-card-num">06</div>
+          <div class="gms-card-title">Supply Chain & Logistics</div>
+          <div class="gms-card-text">Global sourcing & procurement, expediting, quality management and inventory control to site.</div>
+        </div>
+        <div class="gms-card">
+          <div class="gms-card-num">07</div>
+          <div class="gms-card-title">Economic Studies</div>
+          <div class="gms-card-text">PEA / PFS / FS, CAPEX & OPEX estimation, expansion studies and economic modelling.</div>
+        </div>
+        <div class="gms-card">
+          <div class="gms-card-num">08</div>
+          <div class="gms-card-title">Audits & Due Diligence</div>
+          <div class="gms-card-text">Acquisition and financing due diligence, peer reviews and operations reviews.</div>
+        </div>
+      </div>
+
+      
+<div class="gms-compare-wrap">
+  <div style="margin-bottom:1.25rem;">
+    <span class="eyebrow">The Self-Perform Difference</span>
+    <h3 style="font-size:1.4rem;font-weight:700;color:var(--charcoal);margin:0.25rem 0 0;">Why GMS Stands Apart</h3>
+  </div>
+
+  <!-- Header row -->
+  <div style="display:grid;grid-template-columns:160px 1.2fr 1fr;gap:2rem;padding:0.5rem 1.75rem;margin-bottom:0.25rem;">
+    <div></div>
+    <div style="font-size:0.85rem;font-weight:700;letter-spacing:0.08em;color:var(--green);text-transform:uppercase;">GMS Self-Perform</div>
+    <div style="font-size:0.85rem;font-weight:700;letter-spacing:0.08em;color:var(--muted);text-transform:uppercase;">Typical EPCM</div>
+  </div>
+
+  <div class="sp-cards">
+
+    <div class="sp-card">
+      <div class="sp-aspect">Engineering</div>
+      <div class="sp-self">Coordinated and delivered in-house, integrated with execution.</div>
+      <div class="sp-epcm">Often split between EPCM and third parties.</div>
+    </div>
+
+    <div class="sp-card">
+      <div class="sp-aspect">Procurement</div>
+      <div class="sp-self">Direct global sourcing;<br>logistics managed end-to-end.</div>
+      <div class="sp-epcm">Multiple contractor layers may add mark-ups.</div>
+    </div>
+
+    <div class="sp-card">
+      <div class="sp-aspect">Construction</div>
+      <div class="sp-self">Direct hiring of workforce;<br>lean supervision structure.</div>
+      <div class="sp-epcm">Contractors execute separate scopes with separate overheads.</div>
+    </div>
+
+    <div class="sp-card">
+      <div class="sp-aspect">Owner Alignment</div>
+      <div class="sp-self">Owner stays central;<br>faster decisions, full accountability.</div>
+      <div class="sp-epcm">Owner manages EPCM plus multiple contractors.</div>
+    </div>
+
+    <!-- On-time / On-budget highlight row -->
+    <div class="sp-card" style="background:var(--green);border-left:4px solid var(--amber);">
+      <div class="sp-aspect" style="color:#fff;">Track Record</div>
+      <div style="color:#fff;font-weight:700;font-size:1rem;">100% on schedule · 100% on budget<br><span style="font-size:0.85rem;font-weight:400;opacity:0.85;">66% of projects delivered <em>below</em> budget — since 2008.</span></div>
+      <div style="color:rgba(255,255,255,0.6);font-style:italic;font-size:0.9rem;">Industry average: significant cost overruns & delays are the norm.</div>
+    </div>
+
+  </div>
+</div>
+
+
+
+
+    </div>
+
+  </div>
+</div>
+
+
+</section>
+
+<!-- ══════════ TEAM ══════════ -->
+<section id="team" class="page">
+  <div class="mine-bg-wrap page-head-wrap page-head-team">
+    <div class="page-head-inner">
+      <span class="eyebrow">Our People</span>
+      <h2>The Team</h2>
+      <p>Experienced professionals with deep expertise in mining investment, project finance, and resource capital markets.</p>
+    </div>
+  </div><!-- /mine-bg-wrap page-head-wrap -->
+
+
+
+  <div class="team-grid-wrap">
+  <div class="team-grid">
+
+    <div class="member">
+      <div class="member-top">
+        <img class="member-photo" src="img_fa45c38c.jpg" alt="Claude Dufresne">
+        <div>
+          <div class="member-name">Claude Dufresne</div>
+          <div class="member-title">Partner &amp; CEO</div>
+        </div>
+      </div>
+      <p class="member-bio">30 years mining industry experience. Held executive positions at G Mining Services, IAMGOLD and Cambior. Founder of Camet Metallurgy. Mining Engineering at Laval University.</p>
+      <a href="https://www.linkedin.com/in/claude-dufresne-6455171/" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:0.35rem;margin-top:1rem;font-size:0.78rem;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;color:var(--green);text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='var(--amber)'" onmouseout="this.style.color='var(--green)'"><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg> LinkedIn</a>
+    </div>
+
+    <div class="member">
+      <div class="member-top">
+        <img class="member-photo" src="img_37d41a7b.jpg" alt="Andy Whitfield">
+        <div>
+          <div class="member-name">Andy Whitfield</div>
+          <div class="member-title">Investment Manager</div>
+        </div>
+      </div>
+      <p class="member-bio">14 years mining &amp; investment experience. Operating roles with Glencore &amp; ArcelorMittal, investment roles in London &amp; Saudi Arabia including with La Mancha. Camborne School of Mines &amp; Imperial College.</p>
+    </div>
+
+    <div class="member">
+      <div class="member-top">
+        <img class="member-photo" src="img_9b05c1b0.jpg" alt="James Purchase">
+        <div>
+          <div class="member-name">James Purchase</div>
+          <div class="member-title">Head of Geology</div>
+        </div>
+      </div>
+      <p class="member-bio">18 years mining industry experience. Former senior operating and consultancy roles across exploration &amp; resource geology including at Alkem and 6 years with G Mining Services. QP across several commodities.</p>
+      <a href="https://www.linkedin.com/in/jamespurchase/" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:0.35rem;margin-top:1rem;font-size:0.78rem;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;color:var(--green);text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='var(--amber)'" onmouseout="this.style.color='var(--green)'"><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg> LinkedIn</a>
+    </div>
+
+    <div class="member">
+      <div class="member-top">
+        <img class="member-photo" src="img_4e2fc431.jpg" alt="Yutaka Sugawara">
+        <div>
+          <div class="member-name">Yutaka Sugawara</div>
+        </div>
+      </div>
+      <p class="member-bio">18 years mining and investment experience at Sumitomo Corporation, including at San Cristobal and Sierra Gorda operations, plus leading upstream business development of base metals.</p>
+    </div>
+
+    <div class="member">
+      <div class="member-top">
+        <img class="member-photo" src="img_e8ec5b9c.jpg" alt="Ryu Miyashita">
+        <div>
+          <div class="member-name">Ryu Miyashita</div>
+        </div>
+      </div>
+      <p class="member-bio">Mining investment professional at Sumitomo Corporation, with experience in copper project oversight, performance monitoring and participation in technical governance and site-based reviews.</p>
+    </div>
+
+  </div>
+
+  <!-- Board of Directors -->
+  <div class="board-section">
+    <div class="board-inner">
+      <div class="board-header">
+        <span class="eyebrow">Governance</span>
+        <h2>Board of Directors</h2>
+      </div>
+      <div class="board-grid">
+        <div class="board-member">
+          <div class="board-name">Koji Watanabe</div>
+          <div class="board-org">Sumitomo Corporation</div>
+        </div>
+        <div class="board-member">
+          <div class="board-name">Thomas Elliott</div>
+          <div class="board-org">Sumitomo Corporation</div>
+        </div>
+        <div class="board-member">
+          <div class="board-name">Mathieu Gignac</div>
+          <div class="board-org">G Mining Service</div>
+        </div>
+        <div class="board-member">
+          <div class="board-name">Michael Gignac</div>
+          <div class="board-org">G Mining Service</div>
+        </div>
+      </div>
+    </div>
+  </div><!-- /team-grid -->
+  </div><!-- /team-grid-wrap -->
+
+  
+</section>
+
+<!-- ══════════ MEDIA ══════════ -->
+<section id="media" class="page">
+  <div class="mine-bg-wrap page-head-wrap page-head-media">
+    <div class="page-head-inner">
+      <span class="eyebrow">News &amp; Press</span>
+      <h2>Media</h2>
+      <p>Press releases and announcements from G Mining Capital.</p>
+    </div>
+  </div><!-- /mine-bg-wrap page-head-wrap -->
+
+  <div class="press-list">
+    <div class="press-empty">
+      <p class="press-empty-text">Press releases and announcements will be published here as they become available.</p>
+      <div class="subscribe-wrap">
+        <p class="subscribe-label">Stay informed — subscribe to receive updates directly.</p>
+        <form class="subscribe-form" id="subscribe-form" action="https://formspree.io/f/xqenolog" method="POST">
+          <input type="hidden" name="_subject" value="Media subscription request"/>
+          <input class="fi subscribe-input" type="email" name="email" required placeholder="your@email.com"/>
+          <button class="btn" type="submit">Subscribe</button>
+        </form>
+        <div class="subscribe-ok" id="subscribe-ok">✓ Thank you. You'll receive our updates by email.</div>
+      </div>
+    </div>
+  </div>
+
+  
+</section>
+
+<!-- ══════════ CONTACT ══════════ -->
+<section id="contact" class="page">
+  <div class="mine-bg-wrap page-head-wrap page-head-contact">
+    <div class="page-head-inner">
+      <span class="eyebrow">Get in Touch</span>
+      <h2>Contact</h2>
+      <p>We welcome enquiries from mining companies seeking capital solutions and from investors.</p>
+    </div>
+  </div><!-- /mine-bg-wrap page-head-wrap -->
+
+  <div class="contact-wrap">
+    <div class="contact-info">
+      <div>
+        <div class="ci-label">Office</div>
+        <div class="ci-value">
+          1010-5025 Boul. Lapinière<br>
+          Brossard, QC J4Z 0N5<br>
+          Canada
+        </div>
+      </div>
+      <div>
+        <div class="ci-label">Representative</div>
+        <div class="ci-value">Claude Dufresne</div>
+      </div>
+      <div>
+        <div class="ci-label">LinkedIn</div>
+        <div class="ci-value">
+          <a href="https://ca.linkedin.com/company/g-mining-capital" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:0.5rem;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="flex-shrink:0;"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            G Mining Capital
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <form class="c-form" id="c-form" action="https://formspree.io/f/xqenolog" method="POST">
+      <div class="form-row">
+        <div class="fg">
+          <label class="fl" for="f-firstname">First Name *</label>
+          <input class="fi" type="text" id="f-firstname" name="first_name" required placeholder="First name"/>
+        </div>
+        <div class="fg">
+          <label class="fl" for="f-lastname">Last Name *</label>
+          <input class="fi" type="text" id="f-lastname" name="last_name" required placeholder="Last name"/>
+        </div>
+      </div>
+      <div class="fg">
+        <label class="fl" for="f-company">Company</label>
+        <input class="fi" type="text" id="f-company" name="company" placeholder="Company name"/>
+      </div>
+      <div class="fg">
+        <label class="fl" for="f-email">Email *</label>
+        <input class="fi" type="email" id="f-email" name="email" required placeholder="your@email.com"/>
+      </div>
+      <div class="fg">
+        <label class="fl" for="f-subject">Subject</label>
+        <input class="fi" type="text" id="f-subject" name="subject" placeholder="How can we help?"/>
+      </div>
+      <div class="fg">
+        <label class="fl" for="f-msg">Message *</label>
+        <textarea class="ft" id="f-msg" name="message" required placeholder="Tell us about your project or inquiry..."></textarea>
+      </div>
+      <div class="form-foot">
+        <button class="btn" type="submit">Send Message</button>
+        <span class="form-note">* Required. We respond within 2 business days.</span>
+      </div>
+      <div class="form-ok" id="form-ok">✓ Thank you. We'll be in touch shortly.</div>
+    </form>
+  </div>
+
+  
+</section>
+
+<script>
+// ── Navigation ──────────────────────────────
+function go(id) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-links a').forEach(a => {
+    a.classList.toggle('active', a.dataset.p === id);
+  });
+  document.getElementById(id).classList.add('active');
+  document.getElementById('mobile-drawer').classList.remove('open');
+  window.scrollTo({ top: 0, behavior: 'instant' });
+}
+
+function toggleMenu() {
+  document.getElementById('mobile-drawer').classList.toggle('open');
+}
+
+// ── Contact form (Formspree) ────────────────
+document.getElementById('c-form').addEventListener('submit', async function(e) {
+  e.preventDefault();
+  const btn = this.querySelector('button[type="submit"]');
+  const ok  = document.getElementById('form-ok');
+  btn.disabled = true;
+  btn.textContent = 'Sending…';
+  try {
+    const res = await fetch(this.action, {
+      method: 'POST',
+      body: new FormData(this),
+      headers: { Accept: 'application/json' }
+    });
+    if (res.ok) {
+      this.reset();
+      ok.style.display = 'block';
+      btn.textContent = 'Sent ✓';
+      setTimeout(() => {
+        ok.style.display = 'none';
+        btn.disabled = false;
+        btn.textContent = 'Send Message';
+      }, 5000);
+    } else { throw new Error(); }
+  } catch {
+    btn.disabled = false;
+    btn.textContent = 'Send Message';
+    alert('Something went wrong. Please email us at contact@gminingcapital.com');
+  }
+});
+
+document.getElementById('subscribe-form').addEventListener('submit', async function(e) {
+  e.preventDefault();
+  const btn = this.querySelector('button[type="submit"]');
+  const ok  = document.getElementById('subscribe-ok');
+  btn.disabled = true;
+  btn.textContent = 'Subscribing…';
+  try {
+    const res = await fetch(this.action, {
+      method: 'POST',
+      body: new FormData(this),
+      headers: { Accept: 'application/json' }
+    });
+    if (res.ok) {
+      this.reset();
+      this.style.display = 'none';
+      ok.style.display = 'block';
+    } else { throw new Error(); }
+  } catch {
+    btn.disabled = false;
+    btn.textContent = 'Subscribe';
+    alert('Something went wrong. Please try again later.');
+  }
+});
+
+// ── Scroll-reveal ───────────────────────────
+if ('IntersectionObserver' in window) {
+  const css = document.createElement('style');
+  css.textContent = '.rv{opacity:0;transform:translateY(16px);transition:opacity .5s ease,transform .5s ease}.rv.in{opacity:1;transform:none}';
+  document.head.appendChild(css);
+  const els = document.querySelectorAll('.pillar,.member,.press-item,.stat-item,.tag');
+  els.forEach(el => el.classList.add('rv'));
+  new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); } });
+  }, { threshold: 0.1 }).observe
+  // observe each element
+  ;
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); } });
+  }, { threshold: 0.08 });
+  els.forEach(el => obs.observe(el));
+}
+
+// ── Cookie Banner ────────────────────────
+function acceptCookies() {
+  document.getElementById('cookie-banner').classList.add('hidden');
+  try { localStorage.setItem('gmc_cookies_accepted', '1'); } catch(e) {}
+}
+// Check if already accepted
+(function() {
+  try {
+    if (localStorage.getItem('gmc_cookies_accepted') === '1') {
+      var b = document.getElementById('cookie-banner');
+      if (b) b.classList.add('hidden');
+    }
+  } catch(e) {}
+})();
+</script>
+
+<!-- ══════════ COOKIE BANNER ══════════ -->
+<div id="cookie-banner">
+  <div class="cookie-banner-top">
+    <span class="cookie-title">Cookies</span>
+    <button class="cookie-close" onclick="document.getElementById('cookie-banner').classList.add('hidden')" aria-label="Close">✕</button>
+  </div>
+  <p class="cookie-text">We use cookies to improve your experience. See our <a href="#">Privacy Policy</a>.</p>
+  <button class="cookie-accept" onclick="acceptCookies()">Accept</button>
+</div>
+<footer>
+    <div class="footer-inner">
+      <div class="logo">
+<img src="img_f7b1e9de.png" alt="G Mining Capital" style="height:44px;width:auto;display:block;filter:brightness(0) invert(1) sepia(1) saturate(0.5) hue-rotate(0deg) brightness(1.5);">
+      </div>
+      <nav class="footer-nav">
+        <a onclick="go('overview')">Home</a>
+        <a onclick="go('about')">About</a>
+        <a onclick="go('team')">Team</a>
+        <a onclick="go('media')">Media</a>
+        <a onclick="go('contact')">Contact</a>
+        <a href="https://ca.linkedin.com/company/g-mining-capital" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:0.4rem;">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          LinkedIn
+        </a>
+      </nav>
+      <p class="footer-copy">© 2025 G Mining Capital.<br>All rights reserved. Brossard, Québec, Canada.</p>
+    </div>
+  </footer>
+</body>
+</html>
