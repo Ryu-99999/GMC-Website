@@ -749,6 +749,16 @@ footer {
   transition: background 0.2s;
 }
 .board-member:hover { background: var(--beige); }
+.board-photo {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center center;
+  display: block;
+  margin-bottom: 0.75rem;
+  filter: grayscale(20%);
+}
 .board-name {
   font-size: 0.95rem;
   font-weight: 600;
@@ -1962,7 +1972,10 @@ footer {
       </ul>
     </nav>
     <a href="https://gmining.com/" target="_blank" rel="noopener" style="display:flex;align-items:center;margin-left:1.2rem;opacity:0.85;transition:opacity 0.2s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.85'">
-      <img src="G_services_Miniers.jpg" alt="G Mining Services" style="height:32px;width:auto;display:block;">
+      <img src="G_services_Miniers.png" alt="G Mining Services" style="height:32px;width:auto;display:block;">
+    </a>
+    <a href="https://www.sumitomocorp.com/en/global" target="_blank" rel="noopener" style="display:flex;align-items:center;margin-left:1rem;opacity:0.85;transition:opacity 0.2s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.85'">
+      <img src="Sumitomo_Corporation_logo.png" alt="Sumitomo Corporation" style="height:32px;width:auto;display:block;filter:brightness(0) invert(1);">
     </a>
     <button class="hamburger" onclick="toggleMenu()">
       <span></span><span></span><span></span>
@@ -2204,7 +2217,7 @@ footer {
         <div class="ab-rule" style="background:var(--amber);"></div>
         <div class="ab-sc-logo-wrap" style="border-color:rgba(255,255,255,0.1);">
           <a href="https://www.sumitomocorp.com/en/global" target="_blank" rel="noopener">
-            <img src="Sumitomo_Corporation_logo.jpg" alt="Sumitomo Corporation" style="max-width:220px;width:100%;display:block;padding:0.75rem 0;">
+            <img src="Sumitomo_Corporation_logo.png" alt="Sumitomo Corporation" style="max-width:220px;width:100%;display:block;padding:0.75rem 0;">
           </a>
         </div>
         <div class="ab-sc-stats">
@@ -2226,8 +2239,8 @@ footer {
         <!-- Business Spirit quote -->
         <div class="ab-sc-spirit" style="margin-bottom:2.5rem;">
           <div class="ab-sc-spirit-label">The Sumitomo Business Spirit</div>
-          <blockquote class="ab-sc-quote" style="color:var(--charcoal);">"We shall not pursue immoral business,<br>even if it is profitable."</blockquote>
-          <p class="ab-sc-quote-sub" style="color:var(--muted);">A founding principle of over 400 years — placing integrity and long-term thinking at the heart of every business decision.</p>
+          <blockquote class="ab-sc-quote" style="color:var(--charcoal);"><span style="font-family:Georgia,serif;font-weight:700;">"Enriching lives and the world"</span> — We never pursue easy gains. Integrity and strong unity are cherished principles from which we work to create value for society.</blockquote>
+          <p class="ab-sc-quote-sub" style="color:var(--muted);">United across regions, cultures, and generations — Sumitomo cultivates opportunity, bridges possibilities, and creates a better tomorrow through passion, determination, and enduring values.</p>
         </div>
 
         <p>Sumitomo Corporation is one of Japan's leading <em>sōgō shōsha</em> — integrated trading and investment enterprises with a heritage rooted in the Sumitomo Business Spirit. With offices and operations spanning more than 130 countries, Sumitomo combines physical asset ownership with marketing, supply chain and financial capabilities across a broad range of industries.</p>
@@ -2262,7 +2275,7 @@ footer {
       <p class="ab-section-sub">Plan Better, Build Together · Self-Perform Mine Builder</p>
       <div class="ab-rule"></div>
       <a href="https://gmining.com/" target="_blank" rel="noopener" style="display:inline-block;margin-top:1rem;">
-        <img src="G_services_Miniers.jpg" alt="G Mining Services" style="width:100%;max-width:200px;height:auto;display:block;">
+        <img src="G_services_Miniers.png" alt="G Mining Services" style="width:100%;max-width:200px;height:auto;display:block;">
       </a>
     </div>
 
@@ -2465,20 +2478,27 @@ footer {
       </div>
       <div class="board-grid">
         <div class="board-member">
+          <img class="board-photo" src="bod_koji.jpg" alt="Koji Watanabe">
           <div class="board-name">Koji Watanabe</div>
           <div class="board-org">Sumitomo Corporation</div>
         </div>
         <div class="board-member">
+          <img class="board-photo" src="bod_thomas.jpg" alt="Thomas Elliott">
           <div class="board-name">Thomas Elliott</div>
           <div class="board-org">Sumitomo Corporation</div>
+          <a href="https://www.linkedin.com/in/elliottthomas/" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:0.35rem;margin-top:0.75rem;font-size:0.78rem;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;color:var(--green);text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='var(--amber)'" onmouseout="this.style.color='var(--green)'"><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg> LinkedIn</a>
         </div>
         <div class="board-member">
+          <img class="board-photo" src="bod_mathieu.jpg" alt="Mathieu Gignac">
           <div class="board-name">Mathieu Gignac</div>
           <div class="board-org">G Mining Services</div>
+          <a href="https://www.linkedin.com/in/mathieu-gignac-7973892a/" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:0.35rem;margin-top:0.75rem;font-size:0.78rem;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;color:var(--green);text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='var(--amber)'" onmouseout="this.style.color='var(--green)'"><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg> LinkedIn</a>
         </div>
         <div class="board-member">
+          <img class="board-photo" src="bod_michael.jpg" alt="Michael Gignac">
           <div class="board-name">Michael Gignac</div>
           <div class="board-org">G Mining Services</div>
+          <a href="https://www.linkedin.com/in/michael-gignac-931198161/" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:0.35rem;margin-top:0.75rem;font-size:0.78rem;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;color:var(--green);text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='var(--amber)'" onmouseout="this.style.color='var(--green)'"><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg> LinkedIn</a>
         </div>
       </div>
     </div>
@@ -2499,17 +2519,24 @@ footer {
   </div><!-- /mine-bg-wrap page-head-wrap -->
 
   <div class="press-list">
-    <div class="press-empty">
-      <p class="press-empty-text">Press releases and announcements will be published here as they become available.</p>
-      <div class="subscribe-wrap">
-        <p class="subscribe-label">Stay informed — subscribe to receive updates directly.</p>
-        <form class="subscribe-form" id="subscribe-form" action="https://formspree.io/f/xqenolog" method="POST">
-          <input type="hidden" name="_subject" value="Media subscription request"/>
-          <input class="fi subscribe-input" type="email" name="email" required placeholder="your@email.com"/>
-          <button class="btn" type="submit">Subscribe</button>
-        </form>
-        <div class="subscribe-ok" id="subscribe-ok">✓ Thank you. You'll receive our updates by email.</div>
+    <div class="press-item">
+      <div class="press-meta">
+        <span class="press-tag">Press Release</span>
+        <span class="press-date">June 2, 2026</span>
       </div>
+      <div class="press-body">
+        <div class="press-title">Tintina Mines Announces C$91 Million Private Placement and Strategic Partnership with the Gignac Family and Sumitomo Corporation for the Development of the Domeyko Sulfuros Copper-Gold Project in Chile</div>
+        <a href="https://tintinamines.com/wp-content/uploads/2026/06/20260602_TTS_Announces-C91M-Private-Placement-and-Partnership_Gignac-and-Sumitomo-Corp-1.pdf" target="_blank" rel="noopener" class="press-link">Read full release ↗</a>
+      </div>
+    </div>
+    <div class="subscribe-wrap" style="margin-top:2rem;">
+      <p class="subscribe-label">Stay informed — subscribe to receive updates directly.</p>
+      <form class="subscribe-form" id="subscribe-form" action="https://formspree.io/f/xqenolog" method="POST">
+        <input type="hidden" name="_subject" value="Media subscription request"/>
+        <input class="fi subscribe-input" type="email" name="email" required placeholder="your@email.com"/>
+        <button class="btn" type="submit">Subscribe</button>
+      </form>
+      <div class="subscribe-ok" id="subscribe-ok">✓ Thank you. You'll receive our updates by email.</div>
     </div>
   </div>
 
