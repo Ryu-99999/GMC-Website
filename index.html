@@ -2664,11 +2664,26 @@ document.getElementById('c-form').addEventListener('submit', async function(e) {
   }
 });
 
-document.getElementById('subscribe-form').addEventListener('submit', function(e) {
+document.getElementById('subscribe-form').addEventListener('submit', async function(e) {
+  e.preventDefault();
   const btn = this.querySelector('button[type="submit"]');
+  const ok  = document.getElementById('subscribe-ok');
   btn.disabled = true;
   btn.textContent = 'Subscribing…';
-  // Brevo handles the POST and redirects — allow default form submission
+  try {
+    await fetch(this.action, {
+      method: 'POST',
+      body: new FormData(this),
+      mode: 'no-cors'
+    });
+    this.reset();
+    this.style.display = 'none';
+    ok.style.display = 'block';
+  } catch {
+    btn.disabled = false;
+    btn.textContent = 'Subscribe';
+    alert('Something went wrong. Please try again later.');
+  }
 });
 
 // ── Scroll-reveal ───────────────────────────
