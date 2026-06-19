@@ -2531,9 +2531,11 @@ footer {
     </div>
     <div class="subscribe-wrap" style="margin-top:2rem;">
       <p class="subscribe-label">Stay informed — subscribe to receive updates directly.</p>
-      <form class="subscribe-form" id="subscribe-form" action="https://formspree.io/f/xqenolog" method="POST">
-        <input type="hidden" name="_subject" value="Media subscription request"/>
-        <input class="fi subscribe-input" type="email" name="email" required placeholder="your@email.com"/>
+      <form class="subscribe-form" id="subscribe-form" action="https://4b2d3eeb.sibforms.com/serve/MUIFAF5t2oJddG86-4w6HrOKPP1qpa5O6KFyiJOWnlwabVzlELQjL31w-XAMrby-KXOPXVrwu-x0HICO8AEGOqRec-hVZvTplxSHi5zjrtOvBYaz0bQvO-xkbw9hgVXbTi8Amd6gLYKt7ArCrxfXZ8mAlBiElOFgAtLIm-EzY573mjBXAgMTA977wyrwCSojGwHVuayAUYLPL2FLHg==" method="POST">
+        <input type="text" name="email_address_check" value="" style="display:none"/>
+        <input type="hidden" name="locale" value="en"/>
+        <input type="hidden" name="html_type" value="simple"/>
+        <input class="fi subscribe-input" type="email" name="EMAIL" required placeholder="your@email.com"/>
         <button class="btn" type="submit">Subscribe</button>
       </form>
       <div class="subscribe-ok" id="subscribe-ok">✓ Thank you. You'll receive our updates by email.</div>
@@ -2662,28 +2664,11 @@ document.getElementById('c-form').addEventListener('submit', async function(e) {
   }
 });
 
-document.getElementById('subscribe-form').addEventListener('submit', async function(e) {
-  e.preventDefault();
+document.getElementById('subscribe-form').addEventListener('submit', function(e) {
   const btn = this.querySelector('button[type="submit"]');
-  const ok  = document.getElementById('subscribe-ok');
   btn.disabled = true;
   btn.textContent = 'Subscribing…';
-  try {
-    const res = await fetch(this.action, {
-      method: 'POST',
-      body: new FormData(this),
-      headers: { Accept: 'application/json' }
-    });
-    if (res.ok) {
-      this.reset();
-      this.style.display = 'none';
-      ok.style.display = 'block';
-    } else { throw new Error(); }
-  } catch {
-    btn.disabled = false;
-    btn.textContent = 'Subscribe';
-    alert('Something went wrong. Please try again later.');
-  }
+  // Brevo handles the POST and redirects — allow default form submission
 });
 
 // ── Scroll-reveal ───────────────────────────
