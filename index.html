@@ -50,6 +50,17 @@
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+/* Prevent CSS Grid children from forcing horizontal overflow on mobile
+   (the same bug found in .hero) across all grid sections site-wide */
+.ab-section-inner > *, .ab-jv-grid > *, .ab-caps > *, .ab-sc-hero-inner > *,
+.ab-sc-pillar > *, .gms-grid > *, .gms-partner-grid > *, .gms-block > *,
+.mission-inner > *, .commodities-inner > *, .jv-inner > *, .contact-wrap > *,
+.press-item > *, .pillars-grid > *, .team-grid > *, .board-grid > *,
+.home-cards > *, .gms-cards > *, .sp-card > *, .sp-cards > *,
+.form-row > *, .ab-refit-grid > * {
+  min-width: 0;
+}
+
 :root {
   --green:      #5A6B4A;
   --green-dark: #3E4E34;
@@ -78,6 +89,8 @@ body {
   overflow-x: hidden;
   max-width: 100%;
 }
+
+img { max-width: 100%; }
 
 h1,h2,h3 {
   font-family: 'Outfit', sans-serif;
@@ -201,6 +214,7 @@ footer .logo img { height: 44px; filter: brightness(10); }
   margin: 0 auto;
   padding: 7rem 3rem 5rem;
 }
+.hero > * { min-width: 0; }
 .hero-title {
   font-size: clamp(3rem, 6vw, 4.8rem);
   line-height: 1.1;
@@ -215,6 +229,8 @@ footer .logo img { height: 44px; filter: brightness(10); }
   font-weight: 300;
   max-width: 520px;
   margin-bottom: 2.25rem;
+  overflow-wrap: break-word;
+  word-break: break-word;
 }
 .btn {
   display: inline-block;
@@ -1434,6 +1450,7 @@ footer {
   .stat-item { border-bottom: none; border-right: 1px solid rgba(255,255,255,0.1); padding: 1.25rem; }
   .stat-item:last-child { border-right: none; }
   .commodities-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+  .board-grid { grid-template-columns: repeat(2,1fr); }
 }
 @media (max-width: 768px) {
   .nav-inner { padding: 0 2rem; }
@@ -1456,7 +1473,7 @@ footer {
   .jv-inner { grid-template-columns: 1fr; gap: 2rem; }
   .jv-logo { min-width: unset; }
   .team-grid { grid-template-columns: 1fr; }
-  .board-grid { grid-template-columns: repeat(2,1fr); }
+  .board-grid { grid-template-columns: 1fr; }
   .press-list { padding: 2.5rem 2rem; }
   .press-item { grid-template-columns: 1fr; gap: 0.75rem; }
   .contact-wrap { grid-template-columns: 1fr; gap: 2.5rem; padding: 2.5rem 2rem; }
@@ -1769,10 +1786,40 @@ footer {
   content:'';
   color:var(--amber);
 }
+.sp-header-row{
+  display:grid;
+  grid-template-columns:160px 1.2fr 1fr;
+  gap:2rem;
+  padding:0.5rem 1.75rem;
+  margin-bottom:0.25rem;
+}
 @media(max-width:768px){
   .sp-card{
     grid-template-columns:1fr;
     gap:0.75rem;
+  }
+  .sp-header-row{
+    display:none;
+  }
+  .sp-self::before{
+    content:'GMS Self-Perform: ';
+    font-weight:700;
+    font-size:0.78rem;
+    letter-spacing:0.05em;
+    text-transform:uppercase;
+    color:var(--amber);
+    display:block;
+    margin-bottom:0.2rem;
+  }
+  .sp-epcm::before{
+    content:'Typical EPCM: ';
+    font-weight:700;
+    font-size:0.78rem;
+    letter-spacing:0.05em;
+    text-transform:uppercase;
+    color:var(--muted);
+    display:block;
+    margin-bottom:0.2rem;
   }
 }
 
@@ -2381,7 +2428,7 @@ footer {
   </div>
 
   <!-- Header row -->
-  <div style="display:grid;grid-template-columns:160px 1.2fr 1fr;gap:2rem;padding:0.5rem 1.75rem;margin-bottom:0.25rem;">
+  <div class="sp-header-row">
     <div></div>
     <div style="font-size:0.85rem;font-weight:700;letter-spacing:0.08em;color:var(--green);text-transform:uppercase;">GMS Self-Perform</div>
     <div style="font-size:0.85rem;font-weight:700;letter-spacing:0.08em;color:var(--muted);text-transform:uppercase;">Typical EPCM</div>
