@@ -92,6 +92,71 @@ body {
 
 img { max-width: 100%; }
 
+/* Mobile-only floating section jump nav */
+#section-nav-btn, #section-nav-panel { display: none; }
+@media (max-width: 768px) {
+  #section-nav-btn {
+    display: none;
+    position: fixed;
+    right: 1.2rem;
+    bottom: 1.2rem;
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: var(--green-dark);
+    border: none;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+    z-index: 1000;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    cursor: pointer;
+  }
+  #section-nav-btn span {
+    width: 20px;
+    height: 2px;
+    background: var(--beige-lt);
+    border-radius: 1px;
+  }
+  #section-nav-panel {
+    display: block;
+    position: fixed;
+    right: 1.2rem;
+    bottom: 4.6rem;
+    background: var(--green-dark);
+    border-radius: 10px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.35);
+    padding: 0.6rem 0;
+    z-index: 1000;
+    max-width: 70vw;
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: max-height 0.25s ease, opacity 0.2s ease;
+    pointer-events: none;
+  }
+  #section-nav-panel.open {
+    max-height: 60vh;
+    overflow-y: auto;
+    opacity: 1;
+    pointer-events: auto;
+  }
+  #section-nav-panel a {
+    display: block;
+    padding: 0.65rem 1.1rem;
+    color: var(--beige-lt);
+    font-size: 0.82rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    white-space: nowrap;
+  }
+  #section-nav-panel a:last-child { border-bottom: none; }
+}
+
 h1,h2,h3 {
   font-family: 'Outfit', sans-serif;
   font-weight: 600;
@@ -1458,6 +1523,10 @@ footer {
   .hamburger { display: flex; }
   .hero { padding: 4rem 2rem 3rem; }
   .hero-title { font-size: clamp(2rem, 9vw, 2.6rem); overflow-wrap: break-word; }
+  .stats-panel { grid-template-columns: 1fr !important; }
+  .stat-item { border-right: none !important; border-bottom: 1px solid rgba(255,255,255,0.1) !important; padding: 1.1rem 0 !important; }
+  .stat-item:last-child { border-bottom: none !important; }
+  .ab-hero-h { font-size: clamp(2rem, 9vw, 2.6rem); overflow-wrap: break-word; }
   .nav-inner a[href*="gmining.com"], .nav-inner a[href*="sumitomocorp.com"] { display: none !important; }
   .pillars-wrap { padding: 3rem 2rem; }
   .pillars-grid { grid-template-columns: 1fr; }
@@ -2148,7 +2217,7 @@ footer {
   <div class="mine-bg-wrap ab-hero-wrap">
     <div class="ab-hero-inner" style="max-width:1320px;margin:0 auto;">
       <span class="eyebrow">Who We Are</span>
-      <h1 class="ab-hero-h">Built at the intersection of<br><em>expertise</em> and <em>capital</em></h1>
+      <h1 class="ab-hero-h">Built at the intersection of <em>expertise</em> and <em>capital</em></h1>
       <p class="ab-hero-p">G Mining Capital is a joint venture specialist investment firm — a unique combination of world-class mine-building expertise and global institutional capital, united by a shared commitment to responsible, long-term value creation in mining.</p>
     </div>
   </div>
@@ -2719,6 +2788,7 @@ function go(id) {
   document.getElementById(id).classList.add('active');
   document.getElementById('mobile-drawer').classList.remove('open');
   window.scrollTo({ top: 0, behavior: 'instant' });
+  buildSectionNav();
 }
 
 function toggleMenu() {
@@ -2839,5 +2909,45 @@ function acceptCookies() {
       <p class="footer-copy">© 2025 G Mining Capital.<br>All rights reserved. Brossard, Québec, Canada.</p>
     </div>
   </footer>
+<!-- Mobile-only section jump nav -->
+<button id="section-nav-btn" onclick="toggleSectionNav()" aria-label="Jump to section">
+  <span></span><span></span><span></span>
+</button>
+<div id="section-nav-panel"></div>
+
+<script>
+function buildSectionNav() {
+  const panel = document.getElementById('section-nav-panel');
+  panel.innerHTML = '';
+  const activePage = document.querySelector('.page.active');
+  if (!activePage) return;
+  const eyebrows = activePage.querySelectorAll('.eyebrow');
+  let count = 0;
+  eyebrows.forEach((eb, i) => {
+    const text = eb.textContent.trim();
+    if (!text) return;
+    if (!eb.id) eb.id = 'sec-' + activePage.id + '-' + i;
+    count++;
+    const a = document.createElement('a');
+    a.textContent = text;
+    a.href = '#';
+    a.onclick = function(e) {
+      e.preventDefault();
+      eb.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      document.getElementById('section-nav-panel').classList.remove('open');
+    };
+    panel.appendChild(a);
+  });
+  document.getElementById('section-nav-btn').style.display = count > 1 ? 'flex' : 'none';
+}
+function toggleSectionNav() {
+  document.getElementById('section-nav-panel').classList.toggle('open');
+}
+window.addEventListener('load', buildSectionNav);
+window.addEventListener('scroll', function() {
+  document.getElementById('section-nav-panel').classList.remove('open');
+}, { passive: true });
+</script>
+
 </body>
 </html>
