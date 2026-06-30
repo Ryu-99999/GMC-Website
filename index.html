@@ -1480,6 +1480,7 @@ footer {
   .form-row { grid-template-columns: 1fr; }
   .page-head { padding: 3rem 2rem 2.5rem; }
   .footer-inner { flex-direction: column; align-items: flex-start; gap: 1rem; }
+  .footer-nav { flex-wrap: wrap; gap: 1rem 1.25rem; }
   .footer-copy { text-align: left; }
 }
 
@@ -1831,6 +1832,12 @@ footer {
 .mine-bg-home {
   background-size: 110%;
   animation: minezoom 14s ease-out forwards;
+}
+@media (max-width: 768px) {
+  .mine-bg-home {
+    background-size: cover;
+    animation: none;
+  }
 }
 
 
