@@ -1723,7 +1723,7 @@ footer {
   margin: 0 auto;
 }
 .home-contact-banner h2 {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Outfit', sans-serif;
   font-size: clamp(2rem, 4vw, 3rem);
   color: var(--beige-lt);
   font-weight: 700;
@@ -2780,16 +2780,36 @@ footer {
 
 <script>
 // ── Navigation ──────────────────────────────
-function go(id) {
+function go(id, skipHistory) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   document.querySelectorAll('.nav-links a').forEach(a => {
     a.classList.toggle('active', a.dataset.p === id);
   });
-  document.getElementById(id).classList.add('active');
+  const target = document.getElementById(id);
+  if (!target) return;
+  target.classList.add('active');
   document.getElementById('mobile-drawer').classList.remove('open');
   window.scrollTo({ top: 0, behavior: 'instant' });
+  if (!skipHistory) {
+    if (location.hash !== '#' + id) {
+      history.pushState({ page: id }, '', '#' + id);
+    }
+  }
   buildSectionNav();
 }
+
+window.addEventListener('popstate', function(e) {
+  const id = (e.state && e.state.page) || location.hash.replace('#', '') || 'overview';
+  go(id, true);
+});
+
+window.addEventListener('DOMContentLoaded', function() {
+  const initial = location.hash ? location.hash.replace('#', '') : 'overview';
+  if (document.getElementById(initial)) {
+    go(initial, true);
+    history.replaceState({ page: initial }, '', '#' + initial);
+  }
+});
 
 function toggleMenu() {
   document.getElementById('mobile-drawer').classList.toggle('open');
